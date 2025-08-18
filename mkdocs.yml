@@ -1,0 +1,21 @@
+site_name: Sepettakip Kurye Entegrasyonu
+use_directory_urls: true
+nav:
+  - 'Giriş': 'index.md'
+  - 'Entegrasyon': 'integration.md'
+  - 'İletişim ve Destek': 'contact.md'
+theme:
+    name: readthedocs
+    highlightjs: true
+    hljs_languages:
+      - python
+      - go
+      - javascript
+      - json
+      - curl
+    navigation_depth: 5
+    nav_style: dark
+
+markdown_extensions:
+    - smarty
+    - sane_lists
