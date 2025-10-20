@@ -531,20 +531,19 @@
 </code></pre>
 <h2 id="entegrasyon-testi">Entegrasyon Testi</h2>
 <p>Servisler geliştirilirken, Sepettakip tarafından gelen isteklerin test edilebilmesi ve Sepettakip&rsquo;e gönderilen isteklerin doğrulanabilmesi için test ortamı sağlanmaktadır.</p>
-<p><strong>Test API Base URL</strong>: <code>https://test-api.sepettakip.com</code><br />
-<strong>Courier Company Base Endpoint</strong>: <code>/courier-company/test</code></p>
+<p><strong>Test API Base URL</strong>: <code>https://test-api.sepettakip.com</code>  </p>
 <p><strong>Not</strong>: Test servislerinin tamamı test ortamında çalışır. Production ortamında kullanılamaz.</p>
 <h3 id="test-siparislerini-listeleme">Test Siparişlerini Listeleme</h3>
 <p>Sepettakip&rsquo;e gönderilen test siparişlerini listelemek için bu servis kullanılabilir.</p>
 <p><strong>Not</strong>: Son 3 saat içerisinde gönderilen siparişler listelenir.</p>
 <h4 id="test-siparislerini-listeleme-istegi">Test Siparişlerini Listeleme İsteği</h4>
-<p><strong>Endpoint</strong>: <code>/package</code><br />
+<p><strong>Endpoint</strong>: <code>/courier-company/test/package</code><br />
 <strong>Method</strong>: <code>GET</code></p>
 <h3 id="test-siparis-olusturma">Test Sipariş Oluşturma</h3>
 <p>Sipariş kabul servisinin doğru çalıştığını doğrulamak için test sipariş oluşturma servisi kullanılabilir.</p>
 <p><strong>Not</strong>: 30 saniyede bir test sipariş oluşturabilirsiniz.</p>
 <h4 id="test-siparis-olusturma-istegi">Test Sipariş Oluşturma İsteği</h4>
-<p><strong>Endpoint</strong>: <code>/package</code><br />
+<p><strong>Endpoint</strong>: <code>/courier-company/test/package</code><br />
 <strong>Method</strong>: <code>POST</code>
 <strong>Request Body</strong>:</p>
 <pre><code class="language-json">{
@@ -568,7 +567,7 @@
 <h3 id="test-siparisi-detaylar">Test Siparişi Detayları</h3>
 <p>Sepettakip&rsquo;e gönderilen belirli bir test siparişinin detaylarını görüntülemek için bu servis kullanılabilir.</p>
 <h4 id="test-siparisi-detaylar-istegi">Test Siparişi Detayları İsteği</h4>
-<p><strong>Endpoint</strong>: <code>/package/:package_id</code><br />
+<p><strong>Endpoint</strong>: <code>/courier-company/test/package/:package_id</code><br />
 <strong>Method</strong>: <code>GET</code></p>
 <h4 id="test-siparisi-detaylar-cevab">Test Siparişi Detayları Cevabı</h4>
 <pre><code class="language-json">{
@@ -586,7 +585,7 @@
 <p>Test siparişlerin durum güncellemelerini test etmek için bu servis kullanılabilir.</p>
 <p><strong>Not</strong>: Sadece iptal isteği test edilebilir.</p>
 <h4 id="test-siparis-guncelleme-istegi">Test Sipariş Güncelleme İsteği</h4>
-<p><strong>Endpoint</strong>: <code>/package/:package_id</code><br />
+<p><strong>Endpoint</strong>: <code>/courier-company/test/package/:package_id</code><br />
 <strong>Method</strong>: <code>PATCH</code><br />
 <strong>Request Body</strong>:</p>
 <pre><code class="language-json">{
