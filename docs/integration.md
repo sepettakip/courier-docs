@@ -290,7 +290,6 @@ curl -sS --fail \
 Servisler geliştirilirken, Sepettakip tarafından gelen isteklerin test edilebilmesi ve Sepettakip'e gönderilen isteklerin doğrulanabilmesi için test ortamı sağlanmaktadır.
 
 **Test API Base URL**: `https://test-api.sepettakip.com`  
-**Courier Company Base Endpoint**: `/courier-company/test`
 
 **Not**: Test servislerinin tamamı test ortamında çalışır. Production ortamında kullanılamaz.
 
@@ -302,7 +301,7 @@ Sepettakip'e gönderilen test siparişlerini listelemek için bu servis kullanı
 
 #### Test Siparişlerini Listeleme İsteği
 
-**Endpoint**: `/package`  
+**Endpoint**: `/courier-company/test/package`  
 **Method**: `GET`
 
 ### Test Sipariş Oluşturma
@@ -313,7 +312,7 @@ Sipariş kabul servisinin doğru çalıştığını doğrulamak için test sipar
 
 #### Test Sipariş Oluşturma İsteği
 
-**Endpoint**: `/package`  
+**Endpoint**: `/courier-company/test/package`  
 **Method**: `POST`
 **Request Body**:
 
@@ -344,7 +343,7 @@ Sepettakip'e gönderilen belirli bir test siparişinin detaylarını görüntül
 
 #### Test Siparişi Detayları İsteği
 
-**Endpoint**: `/package/:package_id`  
+**Endpoint**: `/courier-company/test/package/:package_id`  
 **Method**: `GET`
 
 #### Test Siparişi Detayları Cevabı
@@ -370,7 +369,7 @@ Test siparişlerin durum güncellemelerini test etmek için bu servis kullanıla
 
 #### Test Sipariş Güncelleme İsteği
 
-**Endpoint**: `/package/:package_id`  
+**Endpoint**: `/courier-company/test/package/:package_id`  
 **Method**: `PATCH`  
 **Request Body**:
 
