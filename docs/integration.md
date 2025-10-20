@@ -292,24 +292,28 @@ Servisler geliştirilirken, Sepettakip tarafından gelen isteklerin test edilebi
 **Test API Base URL**: `https://test-api.sepettakip.com`  
 **Courier Company Base Endpoint**: `/courier-company/test`
 
-Sepettakip'e gönderilen bütün HTTP isteklerinde ise aşağıdaki header bilgisi bulunmalıdır.
-
-```json
-{
-    "Courier-Company": "<COURIER_COMPANY_KEY>",
-    "Api-Key": "<SEPETTAKIP_API_KEY>"
-}
-```
-
 **Not**: Test servislerinin tamamı test ortamında çalışır. Production ortamında kullanılamaz.
+
+### Test Siparişlerini Listeleme
+
+Sepettakip'e gönderilen test siparişlerini listelemek için bu servis kullanılabilir.
+
+**Not**: Son 3 saat içerisinde gönderilen siparişler listelenir.
+
+#### Test Siparişlerini Listeleme İsteği
+
+**Endpoint**: `/package`  
+**Method**: `GET`
 
 ### Test Sipariş Oluşturma
 
 Sipariş kabul servisinin doğru çalıştığını doğrulamak için test sipariş oluşturma servisi kullanılabilir.
 
+**Not**: 30 saniyede bir test sipariş oluşturabilirsiniz.
+
 #### Test Sipariş Oluşturma İsteği
 
-**Endpoint**: `package`
+**Endpoint**: `/package`  
 **Method**: `POST`
 **Request Body**:
 
@@ -334,24 +338,13 @@ Sipariş kabul servisinin doğru çalıştığını doğrulamak için test sipar
 
 Test siparii oluştururken bütün alanlar opsiyoneldir. Bu bilgiler eksik gönderildiğinizde tarafınızıa nasıl yansıdığını test edebilirsiniz. Ancak `platform` bilgisi her zaman `sepetapp` olarak gelecektir.
 
-### Test Siparişlerini Listeleme
-
-Sepettakip'e gönderilen test siparişlerini listelemek için bu servis kullanılabilir.
-
-**Not**: Son 3 saat içerisinde gönderilen siparişler listelenir.
-
-#### Test Siparişlerini Listeleme İsteği
-
-**Endpoint**: `package`
-**Method**: `GET`
-
 ### Test Siparişi Detayları
 
 Sepettakip'e gönderilen belirli bir test siparişinin detaylarını görüntülemek için bu servis kullanılabilir.
 
 #### Test Siparişi Detayları İsteği
 
-**Endpoint**: `package/:package_id`
+**Endpoint**: `/package/:package_id`  
 **Method**: `GET`
 
 #### Test Siparişi Detayları Cevabı
@@ -377,8 +370,8 @@ Test siparişlerin durum güncellemelerini test etmek için bu servis kullanıla
 
 #### Test Sipariş Güncelleme İsteği
 
-**Endpoint**: `package/:package_id`
-**Method**: `PATCH`
+**Endpoint**: `/package/:package_id`  
+**Method**: `PATCH`  
 **Request Body**:
 
 ```json
