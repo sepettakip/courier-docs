@@ -1,38 +1,47 @@
-# Kurye Entegrasyonu
+# Entegrasyon
 
-Sepettakip, restoranların siparişlerini kurye firmalarına iletmek için bir entegrasyon sunar. Bu entegrasyon sayesinde restoranlar, sipariş akışlarını kolayca yönetebilir ve kuryelerle etkili bir iletişim kurabilir.
+Sepettakip, restoranların sipariş veya onboarding süreçlerini otomatikleştirmek için kurye firmalarına API tabanlı entegrasyon imkanı sunar. Bu doküman, kurye firmalarının Sepettakip ile nasıl entegre olabileceğini ve gerekli API çağrılarını detaylandırır.
 
 ## Entegrasyon Öncesi
 
-Entegrasyon başlamadan önce kurye firması, Sepettakip'ten gelen HTTP istekleri karşılamak için aşağıdaki servisleri hazırlamalıdır.
+Entegrasyon sürecine başlamadan önce süreçte talep edilecek servisler ve servislerin temel gereksinimleri bu başlık altında toplanmıştır.
+
+Sepettakip tarafından sipariş yönetimi için kullanılacak servisler:
 
 - **Restoran Kimlik Doğrulama (Check Credentials)**  
-- **Paket Oluşturma (Send Order)**
-- **Paket İptali (Cancel Package)**
+- **Paket Oluşturma (Create Package)**
+- **Paket İptal Etme (Cancel Package)**
 
-İletilen siparişlerin sorumluluğu kurye firmasına aittir. Bu yüzden kurye firması Teslimat Durum Webhook aracılığı ile paket güncellemelerini Sepettakip'e iletmek zorundadır.
+Ayrıca sipariş güncellemelerini Sepettakip'e iletmek için kurye firması tarafından kullanılacak servis:
 
-- **Teslimat Durum Webhook**
+- **Paket Güncelleme (Kurye Firması -> Sepettakip)**
 
-Test ve Production ortamlarında kullanılacak `Api-Key` bilgileri sizlere iletilecektir. Geliştirmeler tamamlandıktan sonra karşılıklı testler yapılarak canlı ortama geçiş sağlanacaktır.
-
-## Entegrasyon Süreci
-
-Sepettakip tarafından gönderilen bütün HTTP istekleri, aşağıdaki header bilgisi ile gönderilir.
+Sepettakip tarafından gönderilen her HTTP isteğinde aşağıdaki header bilgisi bulunacaktır.
 
 ```json
-{
-    "Api-Key": "<SEPETTAKIP_API_KEY>"
+{   
+  "Api-Key": "<SEPETTAKIP_API_KEY>"
 }
 ```
 
-Bu bilgi, isteğin Sepettakip'ten geldiğini teyit eder. Bu bilgi, test ve production ortamları için sizinle paylaşılacaktır.
+Ayrıca Sepettakip'e gönderilen her HTTP isteğinde aşağıdaki header bilgisi bulunmalıdır.
+
+```json
+{   
+  "Courier-Company": "<COURIER_COMPANY_KEY>",
+  "Api-Key": "<SEPETTAKIP_API_KEY>"
+}
+```
+
+Test ve Production ortamlarında kullanılacak `COURIER_COMPANY_KEY` ve `SEPETTAKIP_API_KEY` bilgileri e-posta aracılığı ile temin edilecektir.
+
+## Entegrasyon Süreci
 
 ### Restoran Kimlik Doğrulama
 
 Restoran, çalışmak istediği kurye firmasından aldığı **erişim bilgilerini** Sepettakip arayüzüne girer. Sepettakip bu bilgileri kurye sistemine **Check Credentials** isteğiyle doğrular. **Doğrulama başarılıysa** entegrasyon etkinleşir ve sipariş akışı başlatılabilir. **Doğrulama başarısızsa** entegrasyon etkinleşmez ve sipariş akışı başlatılamaz.
 
-#### Restoran Kimlik Doğrulama Request
+#### Restoran Kimlik Doğrulama İsteği
 
 **Endpoint:** `check-credentials`  
 **Method:** `POST`  
@@ -45,23 +54,22 @@ Restoran, çalışmak istediği kurye firmasından aldığı **erişim bilgileri
 }
 ```
 
-> `username` olarak restoranın Sepettakip tarafındaki ID numarası kullanılması önerilir. Bu bilgi, restorandan temin edilebilir.
->
+**Not**: `username` olarak restoranın Sepettakip tarafındaki ID numarası kullanılması önerilir. Bu bilgi, restorandan temin edilebilir. `password` bilgisi ise her restoran için öze olarak üretilmelidir.
 
-#### Restoran Kimlik Doğrulama Response
+#### Restoran Kimlik Doğrulama Cevabı
 
 - **200 OK** → Kimlik bilgileri **doğru**.
 - **400 Bad Request** → Kimlik bilgileri **hatalı** veya istek gövdesi **geçersiz**.
 
-> Yanıt gövdesi opsiyoneldir; yalnızca durum kodu ile karar verilebilir.
+**Not**: Yanıt gövdesi opsiyoneldir; yalnızca http durum kodu ile karar verilebilir.
 
 ### Paket Oluşturma
 
 Bir sipariş **restoranda hazırlanıyor statüsüne geçtiğinde** ve **kurye sipariş akışı açıksa**, sipariş otomatik olarak seçili kurye firmasına iletilir.
 
-#### Send Order Request
+#### Sipariş Oluşturma İsteği
 
-**Endpoint:** `send-order`  
+**Endpoint:** `create-package`  
 **Method:** `POST`  
 **Request Body:**
 
@@ -122,7 +130,7 @@ Bir sipariş **restoranda hazırlanıyor statüsüne geçtiğinde** ve **kurye s
 }
 ```
 
-> Kurye firması, operasyonel ihtiyaçları doğrultusunda istek gövdesine (payload) ek alanlar talep edebilir; ancak temel şema korunur ve zorunlu alanlar değiştirilmez.
+**Not**: Kurye firması, operasyonel ihtiyaçları doğrultusunda istek gövdesine (payload) ek alanlar talep edebilir; ancak temel şema korunur ve zorunlu alanlar değiştirilmez.
 
 - `auth` -> kurye firması tarafından restorana verilen erişim bilgilerini içerir.
 - `restaurant` -> restoranın Sepettakip tarafındaki bilgilerini içerir.
@@ -140,7 +148,7 @@ Bir sipariş **restoranda hazırlanıyor statüsüne geçtiğinde** ve **kurye s
 - `customer` -> müşteri bilgileri.
 - `products` -> sipariş içeriği.
 
-Adres bilgisindeki `latitude` ve `longitude` bilgisi, **CallerID** siparişlerinde iletilmez.
+Adres bilgisindeki `latitude` ve `longitude` bilgisi, **CallerID** siparişlerinde iletilmez. Bu yüzden `null` değer alabilir. Ayrıca `neighborhood`, `building_no`, `floor` ve `door_number` alanları opsiyoneldir.
 Ödeme tipinin `key` bilgisi aşağıdaki değerleri alabilir.
 
 | Alan         | Değerler                                                                                                                                                                                                                               |
@@ -148,10 +156,9 @@ Adres bilgisindeki `latitude` ve `longitude` bilgisi, **CallerID** siparişlerin
 | payment_type | paye, setcard, sodexo, sodexomobile, garantipay, moneypay, edenredonline, onlinecard, smarticket, sodexoonline, bkm, tokenflexonline, pos, sepetpara, card, cash, ticket, multinet, metropol, debt, winwin, tokenflex, cio, yemekmatik |
 | platform     | Gofody, Yemeksepeti, Getir, Trendyol, Sepetapp, Migros, Fuudy, CallerID                                                                                                                                                                |
 
-> Sipariş başarıyla oluşturulduktan sonra, **tüm durum güncellemeleri** kurye firması tarafından Sepettakip’e bildirilmelidir.
->
+**Not**: Sipariş başarıyla oluşturulduktan sonra, **tüm durum güncellemeleri** kurye firması tarafından Sepettakip’e bildirilmelidir.
 
-#### Send Order Response
+#### Sipariş Oluşturma Cevabı
 
 - **200 OK** → Sipariş oluşturuldu.
 - **400 Bad Request** → Sipariş oluşturulamadı.
@@ -166,7 +173,7 @@ Adres bilgisindeki `latitude` ve `longitude` bilgisi, **CallerID** siparişlerin
 }
 ```
 
-> Yanıt gövdesi opsiyoneldir; yalnızca durum kodu ile karar verilebilir.
+**Not**: Yanıt gövdesi opsiyoneldir; yalnızca durum kodu ile karar verilebilir.
 
 Sipariş kurye sisteminde işlenemediğinde, kurye servisinden **geçerli bir hata kodu (`code`)** dönerse, restoran arayüzünde **aktarılamama nedeni** bu koda karşılık gelen açıklamayla gösterilir.  
 
@@ -184,9 +191,13 @@ Sipariş kurye sisteminde işlenemediğinde, kurye servisinden **geçerli bir ha
 
 ### Paket İptal
 
-**Endpoint:** `cancel-order`  
-**Method:** `POST`  
-**Request Body:**
+Restoran, paketi herhangi bir nedenden ötürü iptal ederse iptal bilgisi Kurye firmasına iletilir. Hata oluşması durumunda bildirim tekrar yapılmaz. Her durumda firmanın bu bildirimi kabul ettiği varsayılır.
+
+#### Paket İptal İsteği
+
+**Endpoint**: `cancel-order`  
+**Method**: `POST`  
+**Request Body**:  
 
 ```json
 {
@@ -194,11 +205,14 @@ Sipariş kurye sisteminde işlenemediğinde, kurye servisinden **geçerli bir ha
 }
 ```
 
-Bayi paketi herhangi bir nedenden ötürü iptal ederse iptal bilgisi Kurye firmasına iletilir. Hata oluşması durumunda bildirim tekrar yapılmaz. Her durumda firmanın bu bildirimi kabul ettiği varsayılır.
+#### Paket İptal Cevabı
 
-### Teslimat Durum Webhook’u (Kurye → Sepettakip)
+- **200 OK** → Sipariş iptal edildi.
+- **400 Bad Request** → Sipariş iptal edilemedi.
 
-Sepettakip bir siparişi kurye firmasına aktardıktan sonra, siparişin **operasyonel takibi kurye firmasındadır**. Bu nedenle kurye firması, **tüm durum değişikliklerini** aşağıdaki webhook ile Sepettakip’e **anlık** iletmekle yükümlüdür. Aksi halde akış senkronu bozulur (gecikme, çift kayıt, yanlış teslim görünebilir).
+### Paket Güncelleme (Kurye → Sepettakip)
+
+Sepettakip bir siparişi kurye firmasına aktardıktan sonra, siparişin **operasyonel takibi kurye firmasındadır**. Bu nedenle kurye firması, **tüm durum değişikliklerini** aşağıdaki webhook ile Sepettakip’e **anlık** iletmekle yükümlüdür.
 
 **API Base URL (Test):** `https://test-api.sepettakip.com`  
 **API Base URL (Prod):** `https://api.sepettakip.com`  
@@ -236,7 +250,7 @@ Sepettakip bir siparişi kurye firmasına aktardıktan sonra, siparişin **opera
 | delivered | Kurye Paketi Teslim Etti | Kurye, paketi alıcıya teslim etti. Süreç tamamlandı.                             |
 | cancelled | Kurye Paketi İptal Etti  | Kurye, paketi iptal etti. Süreç tamamlandı.                                      |
 
-#### **Webhook Response:**
+#### **Webhook Response**
 
 ```json
 {
@@ -255,7 +269,7 @@ Sepettakip bir siparişi kurye firmasına aktardıktan sonra, siparişin **opera
 | 502 | Sistem güncelleniyor; daha sonra deneyin.                      | Geçici durum. Yalnızca test ortamı |
 | 500 | Beklenmeyen sunucu hatası.                                     | Destek ile iletişime geçin.        |
 
-#### **Request Example:**
+#### **Request Example**
 
 ```bash
 curl -sS --fail \
@@ -269,4 +283,107 @@ curl -sS --fail \
     "status": "on_way",
     "courier_eta": "2024-08-12T12:20:32.514011Z"
   }'
+```
+
+## Entegrasyon Testi
+
+Servisler geliştirilirken, Sepettakip tarafından gelen isteklerin test edilebilmesi ve Sepettakip'e gönderilen isteklerin doğrulanabilmesi için test ortamı sağlanmaktadır.
+
+**Test API Base URL**: `https://test-api.sepettakip.com`  
+**Courier Company Base Endpoint**: `/courier-company/test`
+
+Sepettakip'e gönderilen bütün HTTP isteklerinde ise aşağıdaki header bilgisi bulunmalıdır.
+
+```json
+{
+    "Courier-Company": "<COURIER_COMPANY_KEY>",
+    "Api-Key": "<SEPETTAKIP_API_KEY>"
+}
+```
+
+**Not**: Test servislerinin tamamı test ortamında çalışır. Production ortamında kullanılamaz.
+
+### Test Sipariş Oluşturma
+
+Sipariş kabul servisinin doğru çalıştığını doğrulamak için test sipariş oluşturma servisi kullanılabilir.
+
+#### Test Sipariş Oluşturma İsteği
+
+**Endpoint**: `package`
+**Method**: `POST`
+**Request Body**:
+
+```json
+{
+    "restofficial_id": 785,
+    "amount": 150.00,
+    "name": "Hüdaverdi Allahaldı",
+    "phone": "05555555555",
+    "city": "İstanbul",
+    "town": "Üsküdar",
+    "neighborhood": "Burhaniye",
+    "description": "Civanali",
+    "building_no": "GoFody",
+    "floor": "1",
+    "door_number": "2",
+    "latitude": 43.44214579905264,
+    "longitude": 21.365578112422366,
+    "payment_type": "cash"
+}
+```
+
+Test siparii oluştururken bütün alanlar opsiyoneldir. Bu bilgiler eksik gönderildiğinizde tarafınızıa nasıl yansıdığını test edebilirsiniz. Ancak `platform` bilgisi her zaman `sepetapp` olarak gelecektir.
+
+### Test Siparişlerini Listeleme
+
+Sepettakip'e gönderilen test siparişlerini listelemek için bu servis kullanılabilir.
+
+**Not**: Son 3 saat içerisinde gönderilen siparişler listelenir.
+
+#### Test Siparişlerini Listeleme İsteği
+
+**Endpoint**: `package`
+**Method**: `GET`
+
+### Test Siparişi Detayları
+
+Sepettakip'e gönderilen belirli bir test siparişinin detaylarını görüntülemek için bu servis kullanılabilir.
+
+#### Test Siparişi Detayları İsteği
+
+**Endpoint**: `package/:package_id`
+**Method**: `GET`
+
+#### Test Siparişi Detayları Cevabı
+
+```json
+{
+  "order_id": 13247,
+  "order__restofficial__name": "Leina Coffe Terrace",
+  "order__restofficial_id": 785,
+  "status": "created",
+  "error_code": null,
+  "attributes": {},
+  "created_at": "2025-10-20T11:33:49.855363Z",
+  "updated_at": "2025-10-20T11:33:49.855374Z"
+}
+```
+
+### Test Sipariş Güncelleme
+
+Test siparişlerin durum güncellemelerini test etmek için bu servis kullanılabilir.
+
+**Not**: Sadece iptal isteği test edilebilir.
+
+#### Test Sipariş Güncelleme İsteği
+
+**Endpoint**: `package/:package_id`
+**Method**: `PATCH`
+**Request Body**:
+
+```json
+{
+    "package_id": "2651",
+    "status": "cancel"
+}
 ```
