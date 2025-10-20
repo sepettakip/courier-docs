@@ -152,23 +152,22 @@
                 <h1 id="entegrasyon">Entegrasyon</h1>
 <p>Sepettakip, restoranların sipariş veya onboarding süreçlerini otomatikleştirmek için kurye firmalarına API tabanlı entegrasyon imkanı sunar. Bu doküman, kurye firmalarının Sepettakip ile nasıl entegre olabileceğini ve gerekli API çağrılarını detaylandırır.</p>
 <h2 id="entegrasyon-oncesi">Entegrasyon Öncesi</h2>
-<p>Entegrasyon sürecine başlamadan önce süreçte talep edilecek servisler ve servislerin temel gereksinimleri bu başlık altında toplanmıştır.</p>
-<p>Sepettakip tarafından sipariş yönetimi için kullanılacak servisler:</p>
+<p>Kurye firması, Sepettakip ile entegrasyon sağlanabilmesi için aşağıdaki servisleri hazırlamalıdır.</p>
 <ul>
 <li><strong>Restoran Kimlik Doğrulama (Check Credentials)</strong>  </li>
 <li><strong>Paket Oluşturma (Create Package)</strong></li>
 <li><strong>Paket İptal Etme (Cancel Package)</strong></li>
 </ul>
-<p>Ayrıca sipariş güncellemelerini Sepettakip&rsquo;e iletmek için kurye firması tarafından kullanılacak servis:</p>
+<p>Ayrıca sipariş güncellemelerini Sepettakip&rsquo;e iletebilmek için aşağıdaki servis kullanılacak şekilde geliştirme yapılmalıdır.</p>
 <ul>
 <li><strong>Paket Güncelleme (Kurye Firması -&gt; Sepettakip)</strong></li>
 </ul>
-<p>Sepettakip tarafından gönderilen her HTTP isteğinde aşağıdaki header bilgisi bulunacaktır.</p>
+<p>Sepettakip tarafından gönderilen bütün HTTP isteklerinde aşağıdaki header bilgisi yer alır.</p>
 <pre><code class="language-json">{   
   &quot;Api-Key&quot;: &quot;&lt;SEPETTAKIP_API_KEY&gt;&quot;
 }
 </code></pre>
-<p>Ayrıca Sepettakip&rsquo;e gönderilen her HTTP isteğinde aşağıdaki header bilgisi bulunmalıdır.</p>
+<p>Ayrıca Sepettakip&rsquo;e gönderilen bütün HTTP isteklerinde aşağıdaki header bilgisi yer almalıdır.</p>
 <pre><code class="language-json">{   
   &quot;Courier-Company&quot;: &quot;&lt;COURIER_COMPANY_KEY&gt;&quot;,
   &quot;Api-Key&quot;: &quot;&lt;SEPETTAKIP_API_KEY&gt;&quot;
