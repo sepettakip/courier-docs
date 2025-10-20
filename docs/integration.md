@@ -4,19 +4,17 @@ Sepettakip, restoranların sipariş veya onboarding süreçlerini otomatikleşti
 
 ## Entegrasyon Öncesi
 
-Entegrasyon sürecine başlamadan önce süreçte talep edilecek servisler ve servislerin temel gereksinimleri bu başlık altında toplanmıştır.
-
-Sepettakip tarafından sipariş yönetimi için kullanılacak servisler:
+Kurye firması, Sepettakip ile entegrasyon sağlanabilmesi için aşağıdaki servisleri hazırlamalıdır.
 
 - **Restoran Kimlik Doğrulama (Check Credentials)**  
 - **Paket Oluşturma (Create Package)**
 - **Paket İptal Etme (Cancel Package)**
 
-Ayrıca sipariş güncellemelerini Sepettakip'e iletmek için kurye firması tarafından kullanılacak servis:
+Ayrıca sipariş güncellemelerini Sepettakip'e iletebilmek için aşağıdaki servis kullanılacak şekilde geliştirme yapılmalıdır.
 
 - **Paket Güncelleme (Kurye Firması -> Sepettakip)**
 
-Sepettakip tarafından gönderilen her HTTP isteğinde aşağıdaki header bilgisi bulunacaktır.
+Sepettakip tarafından gönderilen bütün HTTP isteklerinde aşağıdaki header bilgisi yer alır.
 
 ```json
 {   
@@ -24,7 +22,7 @@ Sepettakip tarafından gönderilen her HTTP isteğinde aşağıdaki header bilgi
 }
 ```
 
-Ayrıca Sepettakip'e gönderilen her HTTP isteğinde aşağıdaki header bilgisi bulunmalıdır.
+Ayrıca Sepettakip'e gönderilen bütün HTTP isteklerinde aşağıdaki header bilgisi yer almalıdır.
 
 ```json
 {   
