@@ -91,6 +91,22 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#entegrasyon-testi">Entegrasyon Testi</a>
         <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#test-erisim-belirteci-dogrulama">Test Erişim Belirteci Doğrulama</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#test-erisim-belirteci-dogrulama-istegi">Test Erişim Belirteci Doğrulama İsteği</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#test-erisim-belirteci-dogrulama-cevab">Test Erişim Belirteci Doğrulama Cevabı</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#test-erisim-belirteci-silme">Test Erişim Belirteci Silme</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#test-erisim-belirteci-silme-istegi">Test Erişim Belirteci Silme İsteği</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#test-erisim-belirteci-silme-cevab">Test Erişim Belirteci Silme Cevabı</a>
+    </li>
+        </ul>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#test-siparislerini-listeleme">Test Siparişlerini Listeleme</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#test-siparislerini-listeleme-istegi">Test Siparişlerini Listeleme İsteği</a>
@@ -532,6 +548,34 @@
 <p>Servisler geliştirilirken, Sepettakip tarafından gelen isteklerin test edilebilmesi ve Sepettakip&rsquo;e gönderilen isteklerin doğrulanabilmesi için test ortamı sağlanmaktadır.</p>
 <p><strong>Test API Base URL</strong>: <code>https://test-api.sepettakip.com</code>  </p>
 <p><strong>Not</strong>: Test servislerinin tamamı test ortamında çalışır. Production ortamında kullanılamaz.</p>
+<h3 id="test-erisim-belirteci-dogrulama">Test Erişim Belirteci Doğrulama</h3>
+<p>Restoranlar, kurye firmalarından aldıkları erişim bilgilerini Sepettakip arayüzüne girdiklerinde, Sepettakip bu bilgileri doğrulamak için bu servisi kullanır.
+Sizlerde bu eirşim belirteçlerinin doğruluğunu kontrol etmek için bu servisi kullanabilirsiniz.</p>
+<p>Ayrıca, bu doğrulama işlemini yapmadan siparişler tarafınıza aktarılmaz</p>
+<h4 id="test-erisim-belirteci-dogrulama-istegi">Test Erişim Belirteci Doğrulama İsteği</h4>
+<p><strong>Endpoint</strong>: <code>/courier-company/test/check-credentials</code>
+<strong>Method</strong>: <code>POST</code>
+<strong>Request Body:</strong></p>
+<pre><code class="language-json">{
+    &quot;username&quot;: &quot;789&quot;,
+    &quot;password&quot;: &quot;superSecret123&quot;
+}
+</code></pre>
+<h4 id="test-erisim-belirteci-dogrulama-cevab">Test Erişim Belirteci Doğrulama Cevabı</h4>
+<ul>
+<li><strong>200 OK</strong> → Kimlik bilgileri <strong>doğru</strong>.</li>
+<li><strong>400 Bad Request</strong> → Kimlik bilgileri <strong>hatalı</strong> veya istek gövdesi <strong>geçersiz</strong>.</li>
+</ul>
+<h3 id="test-erisim-belirteci-silme">Test Erişim Belirteci Silme</h3>
+<p>Restoranların erişim bilgilerini Sepettakip arayüzünden sildiklerinde, Sepettakip bu bilgileri sistemden kaldırmak için bu servisi kullanır. Sizlerde bu erişim belirteçlerini sisteminizden silmek için bu servisi kullanabilirsiniz</p>
+<h4 id="test-erisim-belirteci-silme-istegi">Test Erişim Belirteci Silme İsteği</h4>
+<p><strong>Endpoint</strong>: <code>/courier-company/test/check-credentials</code>
+<strong>Method</strong>: <code>DELETE</code></p>
+<h4 id="test-erisim-belirteci-silme-cevab">Test Erişim Belirteci Silme Cevabı</h4>
+<ul>
+<li><strong>200 OK</strong> → Kimlik bilgileri silindi.</li>
+<li><strong>400 Bad Request</strong> → İstek gövdesi <strong>geçersiz</strong>.</li>
+</ul>
 <h3 id="test-siparislerini-listeleme">Test Siparişlerini Listeleme</h3>
 <p>Sepettakip&rsquo;e gönderilen test siparişlerini listelemek için bu servis kullanılabilir.</p>
 <p><strong>Not</strong>: Son 3 saat içerisinde gönderilen siparişler listelenir.</p>
@@ -546,7 +590,6 @@
 <strong>Method</strong>: <code>POST</code>
 <strong>Request Body</strong>:</p>
 <pre><code class="language-json">{
-    &quot;restofficial_id&quot;: 785,
     &quot;amount&quot;: 150.00,
     &quot;name&quot;: &quot;Hüdaverdi Allahaldı&quot;,
     &quot;phone&quot;: &quot;05555555555&quot;,
