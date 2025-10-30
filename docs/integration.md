@@ -291,6 +291,45 @@ Servisler geliştirilirken, Sepettakip tarafından gelen isteklerin test edilebi
 
 **Not**: Test servislerinin tamamı test ortamında çalışır. Production ortamında kullanılamaz.
 
+### Test Erişim Belirteci Doğrulama
+
+Restoranlar, kurye firmalarından aldıkları erişim bilgilerini Sepettakip arayüzüne girdiklerinde, Sepettakip bu bilgileri doğrulamak için bu servisi kullanır.
+Sizlerde bu eirşim belirteçlerinin doğruluğunu kontrol etmek için bu servisi kullanabilirsiniz.
+
+Ayrıca, bu doğrulama işlemini yapmadan siparişler tarafınıza aktarılmaz
+
+#### Test Erişim Belirteci Doğrulama İsteği
+
+**Endpoint**: `/courier-company/test/check-credentials`
+**Method**: `POST`
+**Request Body:**
+
+```json
+{
+    "username": "789",
+    "password": "superSecret123"
+}
+```
+
+#### Test Erişim Belirteci Doğrulama Cevabı
+
+- **200 OK** → Kimlik bilgileri **doğru**.
+- **400 Bad Request** → Kimlik bilgileri **hatalı** veya istek gövdesi **geçersiz**.
+
+### Test Erişim Belirteci Silme
+
+Restoranların erişim bilgilerini Sepettakip arayüzünden sildiklerinde, Sepettakip bu bilgileri sistemden kaldırmak için bu servisi kullanır. Sizlerde bu erişim belirteçlerini sisteminizden silmek için bu servisi kullanabilirsiniz
+
+#### Test Erişim Belirteci Silme İsteği
+
+**Endpoint**: `/courier-company/test/check-credentials`
+**Method**: `DELETE`
+
+#### Test Erişim Belirteci Silme Cevabı
+
+- **200 OK** → Kimlik bilgileri silindi.
+- **400 Bad Request** → İstek gövdesi **geçersiz**.
+
 ### Test Siparişlerini Listeleme
 
 Sepettakip'e gönderilen test siparişlerini listelemek için bu servis kullanılabilir.
@@ -316,7 +355,6 @@ Sipariş kabul servisinin doğru çalıştığını doğrulamak için test sipar
 
 ```json
 {
-    "restofficial_id": 785,
     "amount": 150.00,
     "name": "Hüdaverdi Allahaldı",
     "phone": "05555555555",
