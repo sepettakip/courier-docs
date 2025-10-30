@@ -300,8 +300,8 @@ Ayrıca, bu doğrulama işlemini yapmadan siparişler tarafınıza aktarılmaz
 
 #### Test Erişim Belirteci Doğrulama İsteği
 
-**Endpoint**: `/courier-company/test/check-credentials`
-**Method**: `POST`
+**Endpoint**: `/courier-company/test/check-credentials`  
+**Method**: `POST`  
 **Request Body:**
 
 ```json
@@ -322,8 +322,8 @@ Restoranların erişim bilgilerini Sepettakip arayüzünden sildiklerinde, Sepet
 
 #### Test Erişim Belirteci Silme İsteği
 
-**Endpoint**: `/courier-company/test/check-credentials`
-**Method**: `DELETE`
+**Endpoint**: `/courier-company/test/check-credentials`  
+**Method**: `DELETE`  
 
 #### Test Erişim Belirteci Silme Cevabı
 
