@@ -306,8 +306,10 @@ Ayrıca, bu doğrulama işlemini yapmadan siparişler tarafınıza aktarılmaz
 
 ```json
 {
+  "credentials": {
     "username": "789",
     "password": "superSecret123"
+  }
 }
 ```
 
