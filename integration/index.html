@@ -431,7 +431,7 @@
 <td>enum</td>
 <td>Evet</td>
 <td>-</td>
-<td><code>on_way</code> · <code>picked_up</code> · <code>delivered</code> · <code>cancelled</code></td>
+<td><code>on_way</code> · <code>picked_up</code> · <code>delivered</code> · <code>canceled</code>, <code>rejected</code></td>
 <td>Sipariş durum bilgisi.</td>
 </tr>
 <tr>
@@ -439,8 +439,8 @@
 <td>datetime</td>
 <td>Hayır</td>
 <td>-</td>
-<td>ISO-8601 UTC</td>
-<td>Kurye tahmini varış zamanı (örn. <code>2025-08-18T07:30:00Z</code>).</td>
+<td>ISO-8601 UTC (örn. <code>2025-08-18T07:30:00Z</code>)</td>
+<td>Kurye tahmini varış zamanı .</td>
 </tr>
 </tbody>
 </table>
@@ -466,12 +466,17 @@
 <tr>
 <td>delivered</td>
 <td>Kurye Paketi Teslim Etti</td>
-<td>Kurye, paketi alıcıya teslim etti. Süreç tamamlandı.</td>
+<td>Kurye, paketi alıcıya teslim etti. (Sipariş, Sepettakip&rsquo;te &ldquo;teslim edildi&rdquo; olarak güncellenir.)</td>
 </tr>
 <tr>
-<td>cancelled</td>
+<td>canceled</td>
 <td>Kurye Paketi İptal Etti</td>
-<td>Kurye, paketi iptal etti. Süreç tamamlandı.</td>
+<td>Kurye, paketi iptal etti. (Sipariş, Sepettakip&rsquo;te &ldquo;iptal edildi&rdquo; olarak güncellenir)</td>
+</tr>
+<tr>
+<td>rejected</td>
+<td>Kurye Paketi Reddetti</td>
+<td>Kurye, paketi reddetti. (Restorana sadece bildirim yapılır, iptal edilmez.)</td>
 </tr>
 </tbody>
 </table>
