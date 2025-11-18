@@ -51,91 +51,33 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="#">Entegrasyon</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#entegrasyon-oncesi">Entegrasyon Öncesi</a>
+    <li class="toctree-l2"><a class="reference internal" href="#genel-entegrasyon-yaps">Genel Entegrasyon Yapısı</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1-kurye-firmas-tarafndan-hazrlanacak-servisler-inbound">1. Kurye Firması Tarafından Hazırlanacak Servisler (Inbound)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-sepettakip-tarafna-yaplacak-bildirimler-outbound-webhook">2. Sepettakip Tarafına Yapılacak Bildirimler (Outbound / Webhook)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#guvenlik-ve-yetkilendirme-headers">Güvenlik ve Yetkilendirme (Headers)</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#entegrasyon-sureci">Entegrasyon Süreci</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#restoran-kimlik-dogrulama">Restoran Kimlik Doğrulama</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#restoran-kimlik-dogrulama-istegi">Restoran Kimlik Doğrulama İsteği</a>
+    <li class="toctree-l3"><a class="reference internal" href="#restoran-kimlik-dogrulama-check-credentials">Restoran Kimlik Doğrulama (Check Credentials)</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#restoran-kimlik-dogrulama-cevab">Restoran Kimlik Doğrulama Cevabı</a>
+    <li class="toctree-l3"><a class="reference internal" href="#paket-olusturma-create-package">Paket Oluşturma (Create Package)</a>
     </li>
-        </ul>
+    <li class="toctree-l3"><a class="reference internal" href="#paket-iptali-cancel-package">Paket İptali (Cancel Package)</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#paket-olusturma">Paket Oluşturma</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#siparis-olusturma-istegi">Sipariş Oluşturma İsteği</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#siparis-olusturma-cevab">Sipariş Oluşturma Cevabı</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#paket-iptal">Paket İptal</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#paket-iptal-istegi">Paket İptal İsteği</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#paket-iptal-cevab">Paket İptal Cevabı</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#paket-guncelleme-kurye-sepettakip">Paket Güncelleme (Kurye → Sepettakip)</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#webhook-response">Webhook Response</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#request-example">Request Example</a>
-    </li>
-        </ul>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#entegrasyon-testi">Entegrasyon Testi</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#test-erisim-belirteci-dogrulama">Test Erişim Belirteci Doğrulama</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#test-erisim-belirteci-dogrulama-istegi">Test Erişim Belirteci Doğrulama İsteği</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#test-erisim-belirteci-dogrulama-cevab">Test Erişim Belirteci Doğrulama Cevabı</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#test-erisim-belirteci-silme">Test Erişim Belirteci Silme</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#test-erisim-belirteci-silme-istegi">Test Erişim Belirteci Silme İsteği</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#test-erisim-belirteci-silme-cevab">Test Erişim Belirteci Silme Cevabı</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#test-siparislerini-listeleme">Test Siparişlerini Listeleme</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#test-siparislerini-listeleme-istegi">Test Siparişlerini Listeleme İsteği</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#test-siparis-olusturma">Test Sipariş Oluşturma</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#test-siparis-olusturma-istegi">Test Sipariş Oluşturma İsteği</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#test-siparisi-detaylar">Test Siparişi Detayları</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#test-siparisi-detaylar-istegi">Test Siparişi Detayları İsteği</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#test-siparisi-detaylar-cevab">Test Siparişi Detayları Cevabı</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#test-siparis-guncelleme">Test Sipariş Güncelleme</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#test-siparis-guncelleme-istegi">Test Sipariş Güncelleme İsteği</a>
-    </li>
-        </ul>
+    <li class="toctree-l3"><a class="reference internal" href="#siparis-durum-guncellemesi-status-webhook">Sipariş Durum Güncellemesi (Status Webhook)</a>
     </li>
         </ul>
     </li>
     </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../integration_test/">Entegrasyon Testi</a>
                 </li>
               </ul>
               <ul>
@@ -166,55 +108,86 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="entegrasyon">Entegrasyon</h1>
-<p>Sepettakip, restoranların sipariş veya onboarding süreçlerini otomatikleştirmek için kurye firmalarına API tabanlı entegrasyon imkanı sunar. Bu doküman, kurye firmalarının Sepettakip ile nasıl entegre olabileceğini ve gerekli API çağrılarını detaylandırır.</p>
-<h2 id="entegrasyon-oncesi">Entegrasyon Öncesi</h2>
-<p>Kurye firması, Sepettakip ile entegrasyon sağlanabilmesi için aşağıdaki servisleri hazırlamalıdır.</p>
+<p>Sepettakip, restoranların sipariş yönetimini ve kurye atama süreçlerini otomatikleştirmek amacıyla kurye firmaları için kapsamlı bir entegrasyon altyapısı sunar. Bu doküman, kurye firmalarının Sepettakip ekosistemine dahil olabilmesi için gerekli teknik standartları, API uç noktalarını (endpoints) ve veri akış senaryolarını detaylandırır.</p>
+<h2 id="genel-entegrasyon-yaps">Genel Entegrasyon Yapısı</h2>
+<p>Sepettakip ile Kurye Firması arasındaki entegrasyon RESTful API mimarisine dayanır ve veri alışverişi JSON formatında gerçekleşir. İletişim güvenliği için tüm isteklerin HTTPS protokolü üzerinden yapılması zorunludur.</p>
+<p>Entegrasyonun tam fonksiyonlu çalışabilmesi için hem Kurye Firmasının geliştirmesi gereken API uç noktaları (Endpoints) hem de Sepettakip&rsquo;e geri bildirim yapılması gereken servisler bulunmaktadır. Veri akışı iki yönlüdür</p>
+<h3 id="1-kurye-firmas-tarafndan-hazrlanacak-servisler-inbound">1. Kurye Firması Tarafından Hazırlanacak Servisler (Inbound)</h3>
+<p>Sepettakip sunucularının, kurye operasyonlarını tetiklemek için istek (request) göndereceği servislerdir. Kurye firması bu servisleri REST API standartlarına uygun olarak dışarıya açmalıdır:</p>
 <ul>
-<li><strong>Restoran Kimlik Doğrulama (Check Credentials)</strong>  </li>
-<li><strong>Paket Oluşturma (Create Package)</strong></li>
-<li><strong>Paket İptal Etme (Cancel Package)</strong></li>
+<li><strong>Restoran Kimlik Doğrulama (Check Credentials)</strong>: Restoranın girdiği Erişim Belirteci (API Key/Token) bilgisinin kurye firması sisteminde geçerli olup olmadığını kontrol eden servistir.</li>
+<li><strong>Sipariş Oluşturma (Create Order)</strong>: Sepettakip&rsquo;ten gelen sipariş bilgilerini alarak sisteminde kayıt açan ve operasyonu başlatan servistir.</li>
+<li><strong>Sipariş İptali (Cancel Order)</strong>: Restoranın veya sistemin iptal ettiği siparişleri kurye firması sisteminden düşürmek için kullanılan servistir.</li>
 </ul>
-<p>Ayrıca sipariş güncellemelerini Sepettakip&rsquo;e iletebilmek için aşağıdaki servis kullanılacak şekilde geliştirme yapılmalıdır.</p>
+<h3 id="2-sepettakip-tarafna-yaplacak-bildirimler-outbound-webhook">2. Sepettakip Tarafına Yapılacak Bildirimler (Outbound / Webhook)</h3>
+<p>Kurye firması sisteminde gerçekleşen durum değişikliklerinin Sepettakip&rsquo;e bildirilmesidir. Kurye firması, bu olaylar gerçekleştiğinde Sepettakip API&rsquo;sine istek gönderir:</p>
 <ul>
-<li><strong>Paket Güncelleme (Kurye Firması -&gt; Sepettakip)</strong></li>
+<li><strong>Sipariş Durum Güncellemesi (Status Webhook)</strong>: Paketin durumu değiştiğinde (Örn: Kurye atandı, Teslim alındı, Teslim edildi, İptal edildi) bu bilginin anlık olarak Sepettakip&rsquo;e iletilmesini sağlayan servistir.</li>
 </ul>
-<p>Sepettakip tarafından gönderilen bütün HTTP isteklerinde aşağıdaki header bilgisi yer alır.</p>
-<pre><code class="language-json">{   
+<h2 id="guvenlik-ve-yetkilendirme-headers">Güvenlik ve Yetkilendirme (Headers)</h2>
+<p>Veri bütünlüğünü ve güvenliğini sağlamak için HTTP isteklerinde aşağıdaki başlık (header) bilgileri zorunludur.</p>
+<p><strong>Sepettakip -&gt; Kurye Firması İstekleri</strong></p>
+<p>Sepettakip tarafından kurye firmasına gönderilen bütün HTTP isteklerinde (Sipariş oluşturma, iptal vb.) aşağıdaki header bilgileri yer alır:</p>
+<pre><code>{   
   &quot;Api-Key&quot;: &quot;&lt;SEPETTAKIP_API_KEY&gt;&quot;
 }
 </code></pre>
-<p>Ayrıca Sepettakip&rsquo;e gönderilen bütün HTTP isteklerinde aşağıdaki header bilgisi yer almalıdır.</p>
-<pre><code class="language-json">{   
+<p><strong>Kurye Firması -&gt; Sepettakip İstekleri (Webhook)</strong></p>
+<p>Kurye firması tarafından Sepettakip&rsquo;e gönderilen bütün bildirimlerde (Durum güncelleme vb.) aşağıdaki header bilgileri yer almalıdır:</p>
+<pre><code>{   
   &quot;Courier-Company&quot;: &quot;&lt;COURIER_COMPANY_KEY&gt;&quot;,
   &quot;Api-Key&quot;: &quot;&lt;SEPETTAKIP_API_KEY&gt;&quot;
 }
 </code></pre>
-<p>Test ve Production ortamlarında kullanılacak <code>COURIER_COMPANY_KEY</code> ve <code>SEPETTAKIP_API_KEY</code> bilgileri e-posta aracılığı ile temin edilecektir.</p>
+<p><strong>Not</strong>: Test ve Production ortamlarında kullanılacak <code>COURIER_COMPANY_KEY</code> ve <code>SEPETTAKIP_API_KEY</code> bilgileri e-posta aracılığı ile temin edilecektir.</p>
 <h2 id="entegrasyon-sureci">Entegrasyon Süreci</h2>
-<h3 id="restoran-kimlik-dogrulama">Restoran Kimlik Doğrulama</h3>
-<p>Restoran, çalışmak istediği kurye firmasından aldığı <strong>erişim bilgilerini</strong> Sepettakip arayüzüne girer. Sepettakip bu bilgileri kurye sistemine <strong>Check Credentials</strong> isteğiyle doğrular. <strong>Doğrulama başarılıysa</strong> entegrasyon etkinleşir ve sipariş akışı başlatılabilir. <strong>Doğrulama başarısızsa</strong> entegrasyon etkinleşmez ve sipariş akışı başlatılamaz.</p>
-<h4 id="restoran-kimlik-dogrulama-istegi">Restoran Kimlik Doğrulama İsteği</h4>
-<p><strong>Endpoint:</strong> <code>check-credentials</code><br />
-<strong>Method:</strong> <code>POST</code><br />
-<strong>Request Body:</strong></p>
+<p>Entegrasyonun sağlıklı yürütülebilmesi için Kurye Firması, API isteklerinin karşılanacağı Base URL bilgisini Sepettakip ekibine iletmelidir. Test ve Canlı (Production) ortamları için ayrıştırılmış URL yapıları kullanılması önerilir.</p>
+<p><strong>Örnek Base URL Yapısı</strong>:</p>
+<ul>
+<li><strong>Test Ortamı</strong>: <code>https://api-test.couriercompany.com/v1</code></li>
+<li><strong>Production Ortamı</strong>: <code>https://api.couriercompany.com/v1/</code></li>
+</ul>
+<p>Tüm API uç noktaları (endpoints) bu Base URL&rsquo;in devamına eklenir.</p>
+<p><strong>Örnek</strong>: Sipariş oluşturma endpoint&rsquo;i <code>/create-package</code> ise ve test ortamındaysak tam istek adresi <code>https://api-test.couriercompany.com/v1/create-package</code> olacaktır.</p>
+<h3 id="restoran-kimlik-dogrulama-check-credentials">Restoran Kimlik Doğrulama (Check Credentials)</h3>
+<p>Restoranın Sepettakip paneline girdiği entegrasyon bilgilerinin (Kullanıcı adı/Şifre vb.) kurye firması tarafında doğrulanmasını sağlar. Bu adım başarılı olmadan sipariş akışı başlatılamaz.</p>
+<p><strong>Endpoint</strong>: <code>/check-credentials</code><br>
+<strong>Method</strong>: <code>POST</code><br>
+<strong>Request Body</strong>:</p>
 <pre><code class="language-json">{
     &quot;username&quot;: &quot;&quot;,
     &quot;password&quot;: &quot;&quot;
 }
 </code></pre>
-<p><strong>Not</strong>: <code>username</code> olarak restoranın Sepettakip tarafındaki ID numarası kullanılması önerilir. Bu bilgi, restorandan temin edilebilir. <code>password</code> bilgisi ise her restoran için öze olarak üretilmelidir.</p>
-<h4 id="restoran-kimlik-dogrulama-cevab">Restoran Kimlik Doğrulama Cevabı</h4>
-<ul>
-<li><strong>200 OK</strong> → Kimlik bilgileri <strong>doğru</strong>.</li>
-<li><strong>400 Bad Request</strong> → Kimlik bilgileri <strong>hatalı</strong> veya istek gövdesi <strong>geçersiz</strong>.</li>
-</ul>
+<p><strong>Not</strong>: username olarak restoranın Sepettakip tarafındaki ID numarası kullanılması önerilir. Bu bilgi, restorandan temin edilebilir. password bilgisi ise her restoran için öze olarak üretilmelidir</p>
+<p>Response olarak HTTP durum kodu 200 dönerse doğrulama başarılıdır. Aksi durumda entegrasyon etkinleşmez.</p>
+<table>
+<thead>
+<tr>
+<th>Durum Kodu</th>
+<th>Durum İsmi</th>
+<th>Açıklama</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>Kimlik bilgileri doğru.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+<td>Kimlik bilgileri hatalı veya istek gövdesi geçersiz.</td>
+</tr>
+</tbody>
+</table>
 <p><strong>Not</strong>: Yanıt gövdesi opsiyoneldir; yalnızca http durum kodu ile karar verilebilir.</p>
-<h3 id="paket-olusturma">Paket Oluşturma</h3>
-<p>Bir sipariş <strong>restoranda hazırlanıyor statüsüne geçtiğinde</strong> ve <strong>kurye sipariş akışı açıksa</strong>, sipariş otomatik olarak seçili kurye firmasına iletilir.</p>
-<h4 id="siparis-olusturma-istegi">Sipariş Oluşturma İsteği</h4>
-<p><strong>Endpoint:</strong> <code>create-package</code><br />
-<strong>Method:</strong> <code>POST</code><br />
-<strong>Request Body:</strong></p>
+<h3 id="paket-olusturma-create-package">Paket Oluşturma (Create Package)</h3>
+<p>Bir sipariş &ldquo;Hazırlanıyor&rdquo; statüsüne geçtiğinde veya restoran manuel olarak tetiklediğinde bu servis çağrılır.</p>
+<p><strong>Endpoint</strong>: <code>/create-package</code><br>
+<strong>Method</strong>: <code>POST</code><br>
+<strong>Request Body</strong>:</p>
 <pre><code class="language-json">{
   &quot;auth&quot;: {
     &quot;username&quot;: &quot;789&quot;,
@@ -243,7 +216,7 @@
       &quot;door_number&quot;: &quot;5&quot;,
       &quot;town&quot;: &quot;Beşiktaş&quot;,
       &quot;city&quot;: &quot;İstanbul&quot;,
-      &quot;description&quot;: &quot;3. kat, sağdaki daire&quot;,
+      &quot;description&quot;: &quot;3\. kat, sağdaki daire&quot;,
       &quot;latitude&quot;: 41.0438,
       &quot;longitude&quot;: 29.0094
     },
@@ -270,273 +243,341 @@
   }
 }
 </code></pre>
-<p><strong>Not</strong>: Kurye firması, operasyonel ihtiyaçları doğrultusunda istek gövdesine (payload) ek alanlar talep edebilir; ancak temel şema korunur ve zorunlu alanlar değiştirilmez.</p>
-<ul>
-<li><code>auth</code> -&gt; kurye firması tarafından restorana verilen erişim bilgilerini içerir.</li>
-<li><code>restaurant</code> -&gt; restoranın Sepettakip tarafındaki bilgilerini içerir.</li>
-<li><code>order</code> -&gt; sipariş detaylarını içerir.</li>
-<li><code>order_id</code> -&gt; siparişin Sepettakip tarafındaki benzersiz numarası.</li>
-<li><code>platform</code> -&gt; siparişin geldiği platform.</li>
-<li><code>preparation_time</code> -&gt; siparişin hazırlanma süresi (dakika).</li>
-<li><code>amount</code> -&gt; siparişin tutarı. Tahsilat -<em>yapılacaksa</em>- bu tutar üzerinden yapılır.</li>
-<li><code>is_paid</code> -&gt; müşteriden ödeme alındıysa <code>true</code>, alınmadı ise <code>false</code>.</li>
-<li><code>note</code> -&gt;  müşteri notu.</li>
-<li><code>payment_type</code> -&gt; ödeme yöntemi.<ul>
-<li><code>key</code> -&gt; ödeme yönteminin Sepettakip tarafındaki kodu.</li>
-<li><code>method</code> -&gt; ödeme yöntemi</li>
-</ul>
-</li>
-<li><code>address</code> -&gt; siparişin teslim edileceği adres.</li>
-<li><code>customer</code> -&gt; müşteri bilgileri.</li>
-<li><code>products</code> -&gt; sipariş içeriği.</li>
-</ul>
-<p>Adres bilgisindeki <code>latitude</code> ve <code>longitude</code> bilgisi, <strong>CallerID</strong> siparişlerinde iletilmez. Bu yüzden <code>null</code> değer alabilir. Ayrıca <code>neighborhood</code>, <code>building_no</code>, <code>floor</code> ve <code>door_number</code> alanları opsiyoneldir.
-Ödeme tipinin <code>key</code> bilgisi aşağıdaki değerleri alabilir.</p>
+<p>Not: Kurye firması, operasyonel ihtiyaçları doğrultusunda istek gövdesine (payload) ek alanlar talep edebilir; ancak temel şema korunur ve zorunlu alanlar değiştirilmez.</p>
 <table>
 <thead>
 <tr>
-<th>Alan</th>
-<th>Değerler</th>
+<th style="text-align: left;">Ana Nesne</th>
+<th style="text-align: left;">Alan</th>
+<th style="text-align: left;">Tip</th>
+<th style="text-align: left;">Zorunluluk</th>
+<th style="text-align: left;">Açıklama</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>payment_type</td>
-<td>paye, setcard, sodexo, sodexomobile, garantipay, moneypay, edenredonline, onlinecard, smarticket, sodexoonline, bkm, tokenflexonline, pos, sepetpara, card, cash, ticket, multinet, metropol, debt, winwin, tokenflex, cio, yemekmatik</td>
+<td style="text-align: left;"><code>auth</code></td>
+<td style="text-align: left;">username</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;"><strong>Zorunlu</strong></td>
+<td style="text-align: left;">Restoran doğrulama kullanıcısı.</td>
 </tr>
 <tr>
-<td>platform</td>
-<td>Gofody, Yemeksepeti, Getir, Trendyol, Sepetapp, Migros, Fuudy, CallerID</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">password</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;"><strong>Zorunlu</strong></td>
+<td style="text-align: left;">Restoran doğrulama şifresi.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>order</code></td>
+<td style="text-align: left;">order_id</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;"><strong>Zorunlu</strong></td>
+<td style="text-align: left;">Sepettakip sistemindeki benzersiz sipariş ID&rsquo;si.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">platform</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;"><strong>Zorunlu</strong></td>
+<td style="text-align: left;">Siparişin kaynağı (Bkz: Platform Listesi).</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">amount</td>
+<td style="text-align: left;">Float</td>
+<td style="text-align: left;"><strong>Zorunlu</strong></td>
+<td style="text-align: left;">Siparişin toplam tutarı.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">is_paid</td>
+<td style="text-align: left;">Bool</td>
+<td style="text-align: left;"><strong>Zorunlu</strong></td>
+<td style="text-align: left;">Ödeme durumu. <code>true</code>: Ödendi, <code>false</code>: Kapıda Tahsilat.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">payment_type.key</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;"><strong>Zorunlu</strong></td>
+<td style="text-align: left;">Ödeme yöntemi kodu (Bkz: Ödeme Tipleri).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>address</code></td>
+<td style="text-align: left;">latitude/longitude</td>
+<td style="text-align: left;">Float</td>
+<td style="text-align: left;">Opsiyonel</td>
+<td style="text-align: left;">Koordinat bilgisi. <strong>Not:</strong> Telefonla siparişlerde (CallerID) bu alan <code>null</code> gelebilir.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">city/town</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;"><strong>Zorunlu</strong></td>
+<td style="text-align: left;">İl ve İlçe bilgisi.</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Not</strong>: Sipariş başarıyla oluşturulduktan sonra, <strong>tüm durum güncellemeleri</strong> kurye firması tarafından Sepettakip’e bildirilmelidir.</p>
-<h4 id="siparis-olusturma-cevab">Sipariş Oluşturma Cevabı</h4>
+<p>Adres bilgisindeki <em>latitude</em> ve <em>longitude</em> bilgisi, <em>CallerID</em> siparişlerinde ve kurye çağır ile oluşturulan siparişlerde iletilmez. Bu yüzden null değer alabilir. Ayrıca neighborhood, building_no, floor ve door_number alanları opsiyoneldir. Ödeme tipinin key bilgisi aşağıdaki değerleri alabilir.</p>
+<p><strong>Desteklenen Değerler Listesi</strong>:</p>
 <ul>
-<li><strong>200 OK</strong> → Sipariş oluşturuldu.</li>
-<li><strong>400 Bad Request</strong> → Sipariş oluşturulamadı.</li>
+<li>Platformlar: <code>Gofody</code>, <code>Yemeksepeti</code>, <code>Getir</code>, <code>Trendyol</code>, <code>Sepetapp</code>, <code>Migros</code>, <code>Fuudy</code>, <code>CallerID</code>, <code>WhatsApp</code></li>
+<li>Ödeme Tipleri (key): <code>paye</code>, <code>setcard</code>, <code>sodexo</code>, <code>sodexomobile</code>, <code>garantipay</code>, <code>moneypay</code>, <code>edenredonline</code>, <code>onlinecard</code>, <code>smarticket</code>, <code>sodexoonline</code>, <code>bkm</code>, <code>tokenflexonline</code>, <code>pos</code>, <code>sepetpara</code>, <code>card</code>, <code>cash</code>, <code>ticket</code>, <code>multinet</code>, <code>metropol</code>, <code>debt</code>, <code>winwin</code>, <code>tokenflex</code>, <code>cio</code>, <code>yemekmatik</code></li>
 </ul>
-<p><strong>Bad Request Response Body:</strong></p>
-<pre><code class="language-json">{
-    &quot;status&quot;: false,
-    &quot;code&quot;: &quot;out_of_service_area&quot;,
-    &quot;message&quot;: &quot;Adres, hizmet alanı dışında.&quot;
-}
-</code></pre>
-<p><strong>Not</strong>: Yanıt gövdesi opsiyoneldir; yalnızca durum kodu ile karar verilebilir.</p>
-<p>Sipariş kurye sisteminde işlenemediğinde, kurye servisinden <strong>geçerli bir hata kodu (<code>code</code>)</strong> dönerse, restoran arayüzünde <strong>aktarılamama nedeni</strong> bu koda karşılık gelen açıklamayla gösterilir.  </p>
-<p><strong>Hata kodu iletilmez, tanınmaz veya biçim olarak geçersizse</strong>, sistem nedeni <strong>“kurye firması kaynaklı genel hata”</strong> olarak bildirir.</p>
 <table>
 <thead>
 <tr>
-<th>Hata Kodu</th>
-<th>Mesaj</th>
+<th>Durum Kodu</th>
+<th>Durum İsmi</th>
 <th>Açıklama</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>unauthorized_access</code></td>
-<td>Yetkisiz Erişim</td>
-<td>Kurye entegrasyonu doğrulanamadı. API anahtarı/kimlik bilgisi geçersiz, eksik ya da süresi dolmuş olabilir. Erişim bilgilerini güncelleyin.</td>
+<td>200</td>
+<td>OK</td>
+<td>Sipariş başarıyla oluşturuldu.</td>
 </tr>
 <tr>
-<td><code>out_of_service_area</code></td>
-<td>hizmet Alanı Dışı</td>
-<td>Teslimat adresi kurye firmasının kapsama alanı dışında. Mesafe/ilçe/polygon kurallarına takıldı.</td>
-</tr>
-<tr>
-<td><code>location_resolution_failed</code></td>
-<td>Adres Hatası</td>
-<td>Adres/koordinatlar çözümlenemedi veya tutarsız. (Eksik alan, hatalı lat/lng, geocoding başarısız.)</td>
-</tr>
-<tr>
-<td><code>restaurant_closed</code></td>
-<td>Restoran Kapalı</td>
-<td>Restoran çalışma saatleri dışında ya da geçici olarak kapalı olduğu için sipariş işlenemiyor.</td>
-</tr>
-<tr>
-<td><code>company_issue</code></td>
-<td>Firma Kaynaklı Problem</td>
-<td>Kurye servisinde iç hata/timeout/bakım (5xx). Daha sonra yeniden deneyin; gerekirse alternatif kurye seçin.</td>
-</tr>
-<tr>
-<td><code>validation_error</code></td>
-<td>Validasyon Hatası</td>
-<td>Zorunlu alan eksik veya format hatalı (telefon, tutar, para birimi, şema uyumsuzluğu vb.).</td>
-</tr>
-<tr>
-<td><code>other</code></td>
-<td>Bilinmeyen Hata</td>
-<td>Kategorize edilemeyen beklenmedik hata.</td>
+<td>400</td>
+<td>Bad Request</td>
+<td>İstek gövdesi geçersiz veya zorunlu alanlar eksik.</td>
 </tr>
 </tbody>
 </table>
-<h3 id="paket-iptal">Paket İptal</h3>
-<p>Restoran, paketi herhangi bir nedenden ötürü iptal ederse iptal bilgisi Kurye firmasına iletilir. Hata oluşması durumunda bildirim tekrar yapılmaz. Her durumda firmanın bu bildirimi kabul ettiği varsayılır.</p>
-<h4 id="paket-iptal-istegi">Paket İptal İsteği</h4>
-<p><strong>Endpoint</strong>: <code>cancel-order</code><br />
-<strong>Method</strong>: <code>POST</code><br />
-<strong>Request Body</strong>:  </p>
+<p><strong>Response Body</strong>:</p>
+<pre><code class="language-json">{
+    &quot;status&quot;: false,
+    &quot;error_code&quot;: &quot;out_of_service_area&quot;,
+    &quot;message&quot;: &quot;Adres, hizmet alanı dışında.&quot;
+}
+</code></pre>
+<p>Uyarı: Sipariş başarıyla oluşturulduktan sonra, tüm durum güncellemeleri kurye firması tarafından Sepettakip&rsquo;e bildirilmelidir.</p>
+<p>Sipariş kurye sisteminde işlenemediğinde, kurye servisinden geçerli bir hata kodu (<code>error_code</code>) dönerse, restoran arayüzünde aktarılamama nedeni bu koda karşılık gelen açıklamayla gösterilir.</p>
+<p>Hata kodu iletilmez, tanınmaz veya biçim olarak geçersizse, sistem nedeni &ldquo;kurye firması kaynaklı genel hata&rdquo; olarak bildirir.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Hata Kodu (<code>error_code</code>)</th>
+<th style="text-align: left;">Mesaj</th>
+<th style="text-align: left;">Açıklama</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>unauthorized_access</code></td>
+<td style="text-align: left;">Yetkisiz Erişim</td>
+<td style="text-align: left;">API anahtarı veya şifre hatalı.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>out_of_service_area</code></td>
+<td style="text-align: left;">Hizmet Alanı Dışı</td>
+<td style="text-align: left;">Adres, kurye firmasının hizmet poligonları dışında.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>location_resolution_failed</code></td>
+<td style="text-align: left;">Adres Hatası</td>
+<td style="text-align: left;">Adres metni veya koordinatlar haritada doğrulanamadı.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>restaurant_closed</code></td>
+<td style="text-align: left;">Restoran Kapalı</td>
+<td style="text-align: left;">Kurye firması o an için hizmet vermiyor (Mesai dışı).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>validation_error</code></td>
+<td style="text-align: left;">Validasyon Hatası</td>
+<td style="text-align: left;">Eksik veya hatalı veri formatı (Örn: Telefon no eksik).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>company_issue</code></td>
+<td style="text-align: left;">Firma Kaynaklı Problem</td>
+<td style="text-align: left;">Kurye sistemi iç hatası (5xx).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>courier_rejected</code></td>
+<td style="text-align: left;">Kurye Reddetti</td>
+<td style="text-align: left;">Kurye firması siparişi kabul etmedi.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>other</code></td>
+<td style="text-align: left;">Diğer Hata</td>
+<td style="text-align: left;">Yukarıdakiler dışında kalan genel hata.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="paket-iptali-cancel-package">Paket İptali (Cancel Package)</h3>
+<p>Kurye firmasina iletilen bir sipariş restoran kaynaklı nedenlere iptal edildiğinde bu servis çağrılır.</p>
+<p><strong>Endpoint</strong>: <code>/cancel-package</code><br>
+<strong>Method</strong>: <code>POST</code><br>
+<strong>Request Body</strong>:</p>
 <pre><code class="language-json">{
     &quot;order_id&quot;: &quot;545&quot;
 }
 </code></pre>
-<h4 id="paket-iptal-cevab">Paket İptal Cevabı</h4>
-<ul>
-<li><strong>200 OK</strong> → Sipariş iptal edildi.</li>
-<li><strong>400 Bad Request</strong> → Sipariş iptal edilemedi.</li>
-</ul>
-<h3 id="paket-guncelleme-kurye-sepettakip">Paket Güncelleme (Kurye → Sepettakip)</h3>
-<p>Sepettakip bir siparişi kurye firmasına aktardıktan sonra, siparişin <strong>operasyonel takibi kurye firmasındadır</strong>. Bu nedenle kurye firması, <strong>tüm durum değişikliklerini</strong> aşağıdaki webhook ile Sepettakip’e <strong>anlık</strong> iletmekle yükümlüdür.</p>
-<p><strong>API Base URL (Test):</strong> <code>https://test-api.sepettakip.com</code><br />
-<strong>API Base URL (Prod):</strong> <code>https://api.sepettakip.com</code><br />
-<strong>Endpoint:</strong> <code>/courier-company/package</code><br />
-<strong>Method:</strong> <code>PATCH</code><br />
-<strong>Headers:</strong></p>
-<pre><code class="language-json">{
-    &quot;courier-company&quot;: &quot;sepetfast&quot;,
-    &quot;Api-Key&quot;: &quot;&lt;SEPETTAKIP_API_KEY&gt;&quot;
-}
-</code></pre>
-<p><strong>Request Body:</strong></p>
-<pre><code class="language-json">{
-    &quot;order_id&quot;: &quot;Siparişin Sepettakip tarafındaki ID numarası.&quot;,
-    &quot;status&quot;: &quot;Siparişin son durumu.&quot;,
-    &quot;courier_eta&quot;: &quot;Kuryenin restorana tahmini ulaşma tarihi.&quot;
-}
-</code></pre>
 <table>
 <thead>
 <tr>
-<th>Alan</th>
-<th>Tip</th>
-<th>Zorunlu</th>
-<th>Varsayılan</th>
-<th>Kabul Edilen Değerler</th>
+<th>Durum Kodu</th>
+<th>Durum İsmi</th>
 <th>Açıklama</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>order_id</code></td>
-<td>string</td>
-<td>Evet</td>
-<td>-</td>
-<td>-</td>
-<td>Siparişin benzersiz kimliği.</td>
-</tr>
-<tr>
-<td><code>status</code></td>
-<td>enum</td>
-<td>Evet</td>
-<td>-</td>
-<td><code>on_way</code> · <code>picked_up</code> · <code>delivered</code> · <code>canceled</code>, <code>rejected</code></td>
-<td>Sipariş durum bilgisi.</td>
-</tr>
-<tr>
-<td><code>courier_eta</code></td>
-<td>datetime</td>
-<td>Hayır</td>
-<td>-</td>
-<td>ISO-8601 UTC (örn. <code>2025-08-18T07:30:00Z</code>)</td>
-<td>Kurye tahmini varış zamanı .</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th>Durum</th>
-<th>Açıklama</th>
-<th>Not</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>on_way</td>
-<td>Kurye Yola Çıktı</td>
-<td>Kurye, paketi <strong>restorandan</strong> almak için yola çıktı. <code>courier_eta</code> gönderilmeli.</td>
-</tr>
-<tr>
-<td>picked_up</td>
-<td>Kurye Paketi Aldı</td>
-<td>Kurye, paketi restorandan teslim aldı. Sepettakip’te sipariş “yolda” görünür.</td>
-</tr>
-<tr>
-<td>delivered</td>
-<td>Kurye Paketi Teslim Etti</td>
-<td>Kurye, paketi alıcıya teslim etti. (Sipariş, Sepettakip&rsquo;te &ldquo;teslim edildi&rdquo; olarak güncellenir.)</td>
-</tr>
-<tr>
-<td>canceled</td>
-<td>Kurye Paketi İptal Etti</td>
-<td>Kurye, paketi iptal etti. (Sipariş, Sepettakip&rsquo;te &ldquo;iptal edildi&rdquo; olarak güncellenir)</td>
-</tr>
-<tr>
-<td>rejected</td>
-<td>Kurye Paketi Reddetti</td>
-<td>Kurye, paketi reddetti. (Restorana sadece bildirim yapılır, iptal edilmez.)</td>
-</tr>
-</tbody>
-</table>
-<h4 id="webhook-response"><strong>Webhook Response</strong></h4>
-<pre><code class="language-json">{
-    &quot;message&quot;: &quot;İşlem başarılı.&quot;
-}
-</code></pre>
-<table>
-<thead>
-<tr>
-<th>Kod</th>
-<th>Açıklama</th>
-<th>Notlar</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>204</td>
-<td>Güncelleme başarılı.</td>
-<td>Gövde boş olabilir.</td>
+<td>200</td>
+<td>OK</td>
+<td>Sipariş başarıyla oluşturuldu.</td>
 </tr>
 <tr>
 <td>400</td>
-<td>Geçersiz istek / sipariş zaten hedef statüde.</td>
-<td>Alan eksik/format hatası.</td>
-</tr>
-<tr>
-<td>401</td>
-<td>API anahtarı geçersiz veya bulunamadı.</td>
-<td><code>Api-Key</code> kontrol edin.</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Sipariş aktarılmamış ya da farklı bir kurye firmasına ait.</td>
-<td>Yetki/yönlendirme hatası.</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Sipariş bulunamadı.</td>
-<td><code>id</code> doğrulayın.</td>
-</tr>
-<tr>
-<td>422</td>
-<td>Mevcut statü, hedef statü için uygun değil (iş kuralı ihlali).</td>
-<td>Örn. <code>courier_eta</code> zorunlu.</td>
-</tr>
-<tr>
-<td>502</td>
-<td>Sistem güncelleniyor; daha sonra deneyin.</td>
-<td>Geçici durum. Yalnızca test ortamı</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Beklenmeyen sunucu hatası.</td>
-<td>Destek ile iletişime geçin.</td>
+<td>Bad Request</td>
+<td>İstek gövdesi geçersiz veya zorunlu alanlar eksik.</td>
 </tr>
 </tbody>
 </table>
-<h4 id="request-example"><strong>Request Example</strong></h4>
+<h3 id="siparis-durum-guncellemesi-status-webhook">Sipariş Durum Güncellemesi (Status Webhook)</h3>
+<p>Sepettakip bir siparişi kurye firmasına aktardıktan sonra, siparişin operasyonel takibi kurye firmasındadır. Kurye firması, sahadaki tüm durum değişikliklerini (kurye atandı, teslim edildi vb.) aşağıdaki webhook servisini çağırarak Sepettakip&rsquo;e anlık olarak iletmekle yükümlüdür.</p>
+<p><strong>API Base URL</strong>:</p>
+<ul>
+<li>Test: <code>https://test-api.sepettakip.com</code></li>
+<li>Prod: <code>https://api.sepettakip.com</code><br>
+  <strong>Endpoint</strong>: <code>/courier-company/package</code><br>
+  <strong>Method</strong>: <code>PATCH</code> <strong>Headers</strong>:</li>
+</ul>
+<p><code>json
+  {
+    "courier-company": "sepetfast",
+    "Api-Key": "&lt;SEPETTAKIP_API_KEY&gt;"
+  }</code></p>
+<p><strong>Request Body</strong>:</p>
+<pre><code class="language-json">{
+    &quot;order_id&quot;: &quot;12345&quot;,
+    &quot;status&quot;: &quot;on_way&quot;,
+    &quot;courier_eta&quot;: &quot;2023-10-25 14:30:00&quot;
+}
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Alan</th>
+<th style="text-align: left;">Tip</th>
+<th style="text-align: left;">Zorunluluk</th>
+<th style="text-align: left;">Açıklama</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>order_id</code></td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;"><strong>Zorunlu</strong></td>
+<td style="text-align: left;">Durumu güncellenecek siparişin Sepettakip ID&rsquo;si.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>status</code></td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;"><strong>Zorunlu</strong></td>
+<td style="text-align: left;">Siparişin yeni durumu (Bkz: Statü Kodları Tablosu).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>courier_eta</code></td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">Opsiyonel</td>
+<td style="text-align: left;">Kuryenin restorana tahmini varış zamanı. <code>YYYY-MM-DD HH:mm:ss</code> formatında gönderilmelidir. (Özellikle <code>on_way</code> durumunda gönderilmesi beklenir).</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Statü Kodu</th>
+<th style="text-align: left;">Durum Adı</th>
+<th style="text-align: left;">Açıklama ve Aksiyon</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>on_way</code></td>
+<td style="text-align: left;">Kurye Yola Çıktı</td>
+<td style="text-align: left;">Kurye, paketi teslim almak üzere restorana doğru yola çıktığında gönderilir. <code>courier_eta</code> bilgisi eklenmelidir.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>picked_up</code></td>
+<td style="text-align: left;">Kurye Paketi Aldı</td>
+<td style="text-align: left;">Kurye, paketi restorandan teslim aldığında gönderilir. Sepettakip panelinde sipariş &ldquo;Yolda&rdquo; statüsüne geçer.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>delivered</code></td>
+<td style="text-align: left;">Teslim Edildi</td>
+<td style="text-align: left;">Kurye, paketi müşteriye teslim ettiğinde gönderilir. Sepettakip panelinde sipariş &ldquo;Teslim Edildi&rdquo; statüsüne geçer.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>canceled</code></td>
+<td style="text-align: left;">İptal Edildi</td>
+<td style="text-align: left;">Kurye firması tarafından operasyonel bir nedenle paket iptal edildiğinde gönderilir. Sepettakip panelinde sipariş &ldquo;İptal&rdquo; statüsüne düşer.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>rejected</code></td>
+<td style="text-align: left;">Paket Reddedildi</td>
+<td style="text-align: left;">Kurye firması paketi kabul etmediğinde (Bölge dışı vb.) gönderilir. Restorana bildirim yapılır ancak sipariş hemen iptal edilmez, restoran aksiyonu beklenir.</td>
+</tr>
+</tbody>
+</table>
+<p>İsteğe dönen cevaplar, HTTP statüs kodları ile belirtilir:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Kod</th>
+<th style="text-align: left;">Açıklama</th>
+<th style="text-align: left;">Notlar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>204</strong></td>
+<td style="text-align: left;">Güncelleme başarılı.</td>
+<td style="text-align: left;">Gövde boş olabilir.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>400</strong></td>
+<td style="text-align: left;">Geçersiz istek / sipariş zaten hedef statüde.</td>
+<td style="text-align: left;">Alan eksik/format hatası.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>401</strong></td>
+<td style="text-align: left;">API anahtarı geçersiz veya bulunamadı.</td>
+<td style="text-align: left;"><code>Api-Key</code> kontrol edin.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>403</strong></td>
+<td style="text-align: left;">Sipariş aktarılmamış ya da farklı bir kurye firmasına ait.</td>
+<td style="text-align: left;">Yetki/yönlendirme hatası.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>404</strong></td>
+<td style="text-align: left;">Sipariş bulunamadı.</td>
+<td style="text-align: left;"><code>id</code> doğrulayın.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>422</strong></td>
+<td style="text-align: left;">Mevcut statü, hedef statü için uygun değil (iş kuralı ihlali).</td>
+<td style="text-align: left;">Örn. <code>courier_eta</code> zorunlu.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>502</strong></td>
+<td style="text-align: left;">Sistem güncelleniyor; daha sonra deneyin.</td>
+<td style="text-align: left;">Geçici durum. Yalnızca test ortamı.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>500</strong></td>
+<td style="text-align: left;">Beklenmeyen sunucu hatası.</td>
+<td style="text-align: left;">Destek ile iletişime geçin.</td>
+</tr>
+</tbody>
+</table>
+<p>Örnek HTTP Request:</p>
 <pre><code class="language-bash">curl -sS --fail \
   -X PATCH 'https://test-api.sepettakip.com/courier-company/package' \
   -H 'Accept: application/json' \
@@ -549,105 +590,12 @@
     &quot;courier_eta&quot;: &quot;2024-08-12T12:20:32.514011Z&quot;
   }'
 </code></pre>
-<h2 id="entegrasyon-testi">Entegrasyon Testi</h2>
-<p>Servisler geliştirilirken, Sepettakip tarafından gelen isteklerin test edilebilmesi ve Sepettakip&rsquo;e gönderilen isteklerin doğrulanabilmesi için test ortamı sağlanmaktadır.</p>
-<p><strong>Test API Base URL</strong>: <code>https://test-api.sepettakip.com</code>  </p>
-<p><strong>Not</strong>: Test servislerinin tamamı test ortamında çalışır. Production ortamında kullanılamaz.</p>
-<h3 id="test-erisim-belirteci-dogrulama">Test Erişim Belirteci Doğrulama</h3>
-<p>Restoranlar, kurye firmalarından aldıkları erişim bilgilerini Sepettakip arayüzüne girdiklerinde, Sepettakip bu bilgileri doğrulamak için bu servisi kullanır.
-Sizlerde bu eirşim belirteçlerinin doğruluğunu kontrol etmek için bu servisi kullanabilirsiniz.</p>
-<p>Ayrıca, bu doğrulama işlemini yapmadan siparişler tarafınıza aktarılmaz</p>
-<h4 id="test-erisim-belirteci-dogrulama-istegi">Test Erişim Belirteci Doğrulama İsteği</h4>
-<p><strong>Endpoint</strong>: <code>/courier-company/test/check-credentials</code><br />
-<strong>Method</strong>: <code>POST</code><br />
-<strong>Request Body:</strong></p>
-<pre><code class="language-json">{
-  &quot;credentials&quot;: {
-    &quot;username&quot;: &quot;789&quot;,
-    &quot;password&quot;: &quot;superSecret123&quot;
-  }
-}
-</code></pre>
-<h4 id="test-erisim-belirteci-dogrulama-cevab">Test Erişim Belirteci Doğrulama Cevabı</h4>
-<ul>
-<li><strong>200 OK</strong> → Kimlik bilgileri <strong>doğru</strong>.</li>
-<li><strong>400 Bad Request</strong> → Kimlik bilgileri <strong>hatalı</strong> veya istek gövdesi <strong>geçersiz</strong>.</li>
-</ul>
-<h3 id="test-erisim-belirteci-silme">Test Erişim Belirteci Silme</h3>
-<p>Restoranların erişim bilgilerini Sepettakip arayüzünden sildiklerinde, Sepettakip bu bilgileri sistemden kaldırmak için bu servisi kullanır. Sizlerde bu erişim belirteçlerini sisteminizden silmek için bu servisi kullanabilirsiniz</p>
-<h4 id="test-erisim-belirteci-silme-istegi">Test Erişim Belirteci Silme İsteği</h4>
-<p><strong>Endpoint</strong>: <code>/courier-company/test/check-credentials</code><br />
-<strong>Method</strong>: <code>DELETE</code>  </p>
-<h4 id="test-erisim-belirteci-silme-cevab">Test Erişim Belirteci Silme Cevabı</h4>
-<ul>
-<li><strong>200 OK</strong> → Kimlik bilgileri silindi.</li>
-<li><strong>400 Bad Request</strong> → İstek gövdesi <strong>geçersiz</strong>.</li>
-</ul>
-<h3 id="test-siparislerini-listeleme">Test Siparişlerini Listeleme</h3>
-<p>Sepettakip&rsquo;e gönderilen test siparişlerini listelemek için bu servis kullanılabilir.</p>
-<p><strong>Not</strong>: Son 3 saat içerisinde gönderilen siparişler listelenir.</p>
-<h4 id="test-siparislerini-listeleme-istegi">Test Siparişlerini Listeleme İsteği</h4>
-<p><strong>Endpoint</strong>: <code>/courier-company/test/package</code><br />
-<strong>Method</strong>: <code>GET</code></p>
-<h3 id="test-siparis-olusturma">Test Sipariş Oluşturma</h3>
-<p>Sipariş kabul servisinin doğru çalıştığını doğrulamak için test sipariş oluşturma servisi kullanılabilir.</p>
-<p><strong>Not</strong>: 30 saniyede bir test sipariş oluşturabilirsiniz.</p>
-<h4 id="test-siparis-olusturma-istegi">Test Sipariş Oluşturma İsteği</h4>
-<p><strong>Endpoint</strong>: <code>/courier-company/test/package</code><br />
-<strong>Method</strong>: <code>POST</code>
-<strong>Request Body</strong>:</p>
-<pre><code class="language-json">{
-    &quot;amount&quot;: 150.00,
-    &quot;name&quot;: &quot;Hüdaverdi Allahaldı&quot;,
-    &quot;phone&quot;: &quot;05555555555&quot;,
-    &quot;city&quot;: &quot;İstanbul&quot;,
-    &quot;town&quot;: &quot;Üsküdar&quot;,
-    &quot;neighborhood&quot;: &quot;Burhaniye&quot;,
-    &quot;description&quot;: &quot;Civanali&quot;,
-    &quot;building_no&quot;: &quot;GoFody&quot;,
-    &quot;floor&quot;: &quot;1&quot;,
-    &quot;door_number&quot;: &quot;2&quot;,
-    &quot;latitude&quot;: 43.44214579905264,
-    &quot;longitude&quot;: 21.365578112422366,
-    &quot;payment_type&quot;: &quot;cash&quot;
-}
-</code></pre>
-<p>Test siparii oluştururken bütün alanlar opsiyoneldir. Bu bilgiler eksik gönderildiğinizde tarafınızıa nasıl yansıdığını test edebilirsiniz. Ancak <code>platform</code> bilgisi her zaman <code>sepetapp</code> olarak gelecektir.</p>
-<h3 id="test-siparisi-detaylar">Test Siparişi Detayları</h3>
-<p>Sepettakip&rsquo;e gönderilen belirli bir test siparişinin detaylarını görüntülemek için bu servis kullanılabilir.</p>
-<h4 id="test-siparisi-detaylar-istegi">Test Siparişi Detayları İsteği</h4>
-<p><strong>Endpoint</strong>: <code>/courier-company/test/package/:package_id</code><br />
-<strong>Method</strong>: <code>GET</code></p>
-<h4 id="test-siparisi-detaylar-cevab">Test Siparişi Detayları Cevabı</h4>
-<pre><code class="language-json">{
-  &quot;order_id&quot;: 13247,
-  &quot;order__restofficial__name&quot;: &quot;Leina Coffe Terrace&quot;,
-  &quot;order__restofficial_id&quot;: 785,
-  &quot;status&quot;: &quot;created&quot;,
-  &quot;error_code&quot;: null,
-  &quot;attributes&quot;: {},
-  &quot;created_at&quot;: &quot;2025-10-20T11:33:49.855363Z&quot;,
-  &quot;updated_at&quot;: &quot;2025-10-20T11:33:49.855374Z&quot;
-}
-</code></pre>
-<h3 id="test-siparis-guncelleme">Test Sipariş Güncelleme</h3>
-<p>Test siparişlerin durum güncellemelerini test etmek için bu servis kullanılabilir.</p>
-<p><strong>Not</strong>: Sadece iptal isteği test edilebilir.</p>
-<h4 id="test-siparis-guncelleme-istegi">Test Sipariş Güncelleme İsteği</h4>
-<p><strong>Endpoint</strong>: <code>/courier-company/test/package/:package_id</code><br />
-<strong>Method</strong>: <code>PATCH</code><br />
-<strong>Request Body</strong>:</p>
-<pre><code class="language-json">{
-    &quot;package_id&quot;: &quot;2651&quot;,
-    &quot;status&quot;: &quot;cancel&quot;
-}
-</code></pre>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href=".." class="btn btn-neutral float-left" title="Giriş"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../contact/" class="btn btn-neutral float-right" title="İletişim ve Destek">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../integration_test/" class="btn btn-neutral float-right" title="Entegrasyon Testi">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -673,7 +621,7 @@ Sizlerde bu eirşim belirteçlerinin doğruluğunu kontrol etmek için bu servis
       <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../contact/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../integration_test/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

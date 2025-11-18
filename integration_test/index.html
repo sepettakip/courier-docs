@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Entegrasyon Testi - Sepettakip Kurye Entegrasyonu</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Entegrasyon Testi";
+        var mkdocs_page_input_path = "integration_test.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/go.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/javascript.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/json.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/curl.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Sepettakip Kurye Entegrasyonu
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Giriş</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../integration/">Entegrasyon</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Entegrasyon Testi</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#erisim-belirteci-dogrulama">Erişim Belirteci Doğrulama</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#erisim-belirtecini-silme">Erişim Belirtecini Silme</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#test-siparislerini-listeleme">Test Siparişlerini Listeleme</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#test-siparis-olusturma">Test Sipariş Oluşturma</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#test-siparis-guncelleme">Test Sipariş Güncelleme</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../contact/">İletişim ve Destek</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Sepettakip Kurye Entegrasyonu</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Entegrasyon Testi</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="entegrasyon-testi-ve-sandbox">Entegrasyon Testi ve Sandbox</h1>
+<p>Sepettakip, entegrasyon sürecini hızlandırmak ve geliştirdiğiniz servisleri kendi kendinize test edebilmeniz (Self-Check) için bir dizi <strong>Tetikleyici API (Trigger Endpoints)</strong> sunar.</p>
+<p>Bu servislerin çalışma mantığı şöyledir:</p>
+<ul>
+<li>Siz (Kurye Firması), aşağıdaki test endpointlerine istek gönderirsiniz.</li>
+<li>Sepettakip, bu isteği alır ve gerçek bir restoran davranışı sergileyerek sizin Base URL olarak tanımladığınız sisteme ilgili isteği (Örn: Sipariş Oluşturma) gönderir.</li>
+<li>Böylece, canlı bir restorana ihtiyaç duymadan entegrasyonunuzu uçtan uca test edebilirsiniz.</li>
+</ul>
+<p>Not: Test servislerinin tamamı test ortamında çalışır. Production ortamında kullanılamaz.</p>
+<p><strong>Test API Base URL</strong>: <code>https://test-api.sepettakip.com</code></p>
+<p>API-Key ve name bilgileri size e-posta ile iletilecektir.</p>
+<h2 id="erisim-belirteci-dogrulama">Erişim Belirteci Doğrulama</h2>
+<p>Geliştirdiğiniz Check Credentials (Kimlik Doğrulama) servisinin doğru çalışıp çalışmadığını test etmek için kullanılır. Bu endpointi çağırdığınızda, Sepettakip sizin sisteminize bir doğrulama isteği gönderir.</p>
+<p><strong>Ayrıca, bu doğrulama işlemini yapmadan siparişler tarafınıza aktarılmaz.</strong></p>
+<p><strong>Endpoint</strong>: <code>/courier-company/test/check-credentials</code><br>
+<strong>Method</strong>: <code>POST</code><br>
+<strong>Request Body</strong>:</p>
+<pre><code class="language-json">{
+  &quot;credentials&quot;: {
+    &quot;username&quot;: &quot;789&quot;,
+    &quot;password&quot;: &quot;superSecret123&quot;
+  }
+}
+</code></pre>
+<h2 id="erisim-belirtecini-silme">Erişim Belirtecini Silme</h2>
+<p>Test restoranına eklenen erişim bilgileri silinmek istendiğinde bu servis kullanılır.</p>
+<p><strong>Endpoint</strong>: <code>/courier-company/test/check-credentials</code><br>
+<strong>Method</strong>: <code>DELETE</code></p>
+<h2 id="test-siparislerini-listeleme">Test Siparişlerini Listeleme</h2>
+<p>Restoranlar, test siparişlerini Sepettakip arayüzünden görüntülemek istediklerinde, Sepettakip bu servisi kullanarak test siparişlerini listeler. Sizlerde bu işlemi gerçekleştirmek için bu servisi kullanabilirsiniz.</p>
+<p><strong>Endpoint</strong>: <code>/courier-company/test/package</code><br>
+<strong>Method</strong>: <code>GET</code></p>
+<h2 id="test-siparis-olusturma">Test Sipariş Oluşturma</h2>
+<p>Sisteminizin sipariş alma (Create Package) kapasitesini test etmek için kullanılır. Gönderdiğiniz JSON içeriğindeki verilerle sanal bir sipariş oluşturulur ve bu sipariş sizin create-package servisinize gerçek bir istek olarak iletilir.</p>
+<p><strong>Endpoint</strong>: <code>/courier-company/test/package</code><br>
+<strong>Method</strong>: <code>POST</code><br>
+<strong>Request Body</strong>:</p>
+<pre><code class="language-json">{
+    &quot;amount&quot;: 150.00,
+    &quot;name&quot;: &quot;Hüdaverdi Allahaldı&quot;,
+    &quot;phone&quot;: &quot;05555555555&quot;,
+    &quot;city&quot;: &quot;İstanbul&quot;,
+    &quot;town&quot;: &quot;Üsküdar&quot;,
+    &quot;neighborhood&quot;: &quot;Burhaniye&quot;,
+    &quot;description&quot;: &quot;Civanali&quot;,
+    &quot;building_no&quot;: &quot;GoFody&quot;,
+    &quot;floor&quot;: &quot;1&quot;,
+    &quot;door_number&quot;: &quot;2&quot;,
+    &quot;latitude&quot;: 43.44214579905264,
+    &quot;longitude&quot;: 21.365578112422366,
+    &quot;payment_type&quot;: &quot;cash&quot;
+}
+</code></pre>
+<p><strong>Not</strong>: 30 saniyede bir test sipariş oluşturabilirsiniz.</p>
+<h2 id="test-siparis-guncelleme">Test Sipariş Güncelleme</h2>
+<p>Oluşturduğunuz bir test siparişinin, restoran tarafından iptal edilmesi senaryosunu simüle eder.</p>
+<p><strong>Endpoint</strong>: <code>/courier-company/test/package/:package_id</code><br>
+<strong>Method</strong>: <code>PATCH</code><br>
+<strong>Request Body</strong>:</p>
+<pre><code class="language-json">{
+    &quot;package_id&quot;: &quot;2651&quot;,
+    &quot;status&quot;: &quot;cancel&quot;
+}
+</code></pre>
+<p><strong>Not</strong>: Sadece iptal isteği test edilebilir.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../integration/" class="btn btn-neutral float-left" title="Entegrasyon"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../contact/" class="btn btn-neutral float-right" title="İletişim ve Destek">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../integration/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../contact/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

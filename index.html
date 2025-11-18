@@ -47,13 +47,17 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="#">Giriş</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#sepettakip-kimdir">Sepettakip Kimdir?</a>
+    <li class="toctree-l2"><a class="reference internal" href="#terimler-sozlugu">Terimler Sözlüğü</a>
     </li>
     </ul>
                 </li>
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="integration/">Entegrasyon</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="integration_test/">Entegrasyon Testi</a>
                 </li>
               </ul>
               <ul>
@@ -84,15 +88,18 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="kurye-entegrasyonu">Kurye Entegrasyonu</h1>
-<p>Bu doküman, Sepettakip ile kurye firmaları arasında gerçekleştirilecek entegrasyonun kapsamını, süreçlerini ve teknik gereksinimlerini tanımlamaktadır.
-Amaç, restoranlardan alınan siparişlerin kurye firmalarına kesintisiz şekilde aktarılması ve teslimatın merkezi olarak takip edilebilmesidir.</p>
-<h2 id="sepettakip-kimdir">Sepettakip Kimdir?</h2>
-<p>Sepettakip, restoranların farklı platformlardan aldığı siparişleri tek bir noktadan yönetebilmelerini sağlayan kapsamlı bir sipariş yönetim ve takip sistemidir.</p>
-<p>İşletmelerin tüm operasyonel ihtiyaçlarını karşılamak üzere geliştirilen Sepettakip, çeşitli kurye firmalarının sisteme entegre olmasına imkân tanır. Bu sayede restoranlar, anlaşmalı oldukları kurye firmalarını sistem üzerinden seçerek siparişlerini doğrudan bu firmalara yönlendirebilir ve teslimat süreçlerini kolaylıkla yönetebilirler.</p>
-<p>Bu doküman, entegrasyon süreçlerini iyileştirmek amacıyla periyodik olarak güncellenmektedir. Lütfen en güncel versiyonu kullandığınızdan emin olunuz.</p>
+<p>Bu doküman, Sepettakip ile kurye firmaları arasında gerçekleştirilecek entegrasyonun teknik altyapısını açıklamaktadır. Entegrasyonun temel hedefi, siparişlerin otomatik olarak kurye firmalarına iletilmesini ve kurye durum güncellemelerinin anlık olarak Sepettakip sistemine aktarılmasını sağlamaktır.</p>
+<h2 id="terimler-sozlugu">Terimler Sözlüğü</h2>
+<p>Dokümanda yer alan bazı terimler aşağıda açıklanmıştır.</p>
 <ul>
-<li><strong>Son Güncelleme Tarihi:</strong> 20 Ekim 2025</li>
-<li><strong>Doküman Versiyonu:</strong> 1.2</li>
+<li><strong>Entegrasyon</strong>: Sepettakip ile Kurye Firması arasındaki veri alışverişini sağlayan teknik bağlantıyı ve bu bağlantının yasal/teknik çerçevesini ifade eder.</li>
+<li><strong>Anlaşma</strong>: Kurye firması ile tekil bir restoran arasındaki ticari ilişkiyi ve bu ilişkinin Sepettakip paneli üzerindeki dijital tanımlamasını ifade eder.</li>
+<li><strong>Erişim Belirteci</strong>: Restoranın kurye firması hizmetlerini kullanabilmesi için gereken; API Anahtarı (API Key), Gizli Anahtar (Secret Key) veya Müşteri ID&rsquo;si gibi dijital kimlik doğrulama bilgilerinin tamamıdır.</li>
+<li><strong>Paket</strong>: İçerisinde bir siparişi barındıran, kurye firmasına teslimat için iletilen tekil lojistik birimi ifade eder.</li>
+<li><strong>Sipariş Akışı</strong>: Bir siparişin Sepettakip&rsquo;e düşmesinden, kurye firmasına iletilip teslim edilmesine kadar geçen sürecin tamamını ve statü değişimlerini ifade eder.</li>
+<li><strong>Otomatik Sipariş Aktarımı</strong>: Restoranın manuel onayına gerek kalmadan, siparişin belirlenen statüye (Örn: &ldquo;Hazırlanıyor&rdquo;) geçmesiyle birlikte sistemin otomatik olarak kurye çağrısı oluşturmasını ifade eder.</li>
+<li><strong>Manuel Aktarım</strong>: Otomatik aktarımın kapalı olduğu veya hata verdiği durumlarda, restoranın &ldquo;Kurye Çağır&rdquo; butonu ile siparişi elle tetiklemesi durumudur.</li>
+<li><strong>Kurye Çağırma</strong>: Restoranın, kurye çağırmak için anlık olarak sipariş oluşturarak kurye firmasına iletmesi işlemidir.</li>
 </ul>
               
             </div>
@@ -141,6 +148,6 @@ Amaç, restoranlardan alınan siparişlerin kurye firmalarına kesintisiz şekil
 </html>
 
 <!--
-MkDocs version : 1.6.0
-Build Date UTC : 2025-11-06 06:35:28.936753+00:00
+MkDocs version : 1.6.1
+Build Date UTC : 2025-11-18 18:48:47.620083+00:00
 -->
