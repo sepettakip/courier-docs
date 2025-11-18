@@ -1,4 +1,5 @@
 # Entegrasyon Testi ve Sandbox
+
 Sepettakip, entegrasyon sürecini hızlandırmak ve geliştirdiğiniz servisleri kendi kendinize test edebilmeniz (Self-Check) için bir dizi **Tetikleyici API (Trigger Endpoints)** sunar.
 
 Bu servislerin çalışma mantığı şöyledir:
@@ -9,18 +10,20 @@ Bu servislerin çalışma mantığı şöyledir:
 
 Not: Test servislerinin tamamı test ortamında çalışır. Production ortamında kullanılamaz.
 
-**Test API Base URL**: https://test-api.sepettakip.com
+**Test API Base URL**: `https://test-api.sepettakip.com`
 
 API-Key ve name bilgileri size e-posta ile iletilecektir.
 
 ## Erişim Belirteci Doğrulama
+
 Geliştirdiğiniz Check Credentials (Kimlik Doğrulama) servisinin doğru çalışıp çalışmadığını test etmek için kullanılır. Bu endpointi çağırdığınızda, Sepettakip sizin sisteminize bir doğrulama isteği gönderir.
 
 **Ayrıca, bu doğrulama işlemini yapmadan siparişler tarafınıza aktarılmaz.**
 
-**Endpoint**: `/courier-company/test/check-credentials`  
-**Method**: `POST`  
-**Request Body**:  
+**Endpoint**: `/courier-company/test/check-credentials`<br>
+**Method**: `POST`<br>
+**Request Body**:
+
 ```json
 {
   "credentials": {
@@ -31,25 +34,27 @@ Geliştirdiğiniz Check Credentials (Kimlik Doğrulama) servisinin doğru çalı
 ```
 
 ## Erişim Belirtecini Silme
-Test restoranına eklenen erişim bilgileri silinmek istendiğinde bu servis kullanılır. 
 
-**Endpoint**: `/courier-company/test/check-credentials`  
+Test restoranına eklenen erişim bilgileri silinmek istendiğinde bu servis kullanılır.
+
+**Endpoint**: `/courier-company/test/check-credentials`<br>
 **Method**: `DELETE`
 
-
-
 ## Test Siparişlerini Listeleme
+
 Restoranlar, test siparişlerini Sepettakip arayüzünden görüntülemek istediklerinde, Sepettakip bu servisi kullanarak test siparişlerini listeler. Sizlerde bu işlemi gerçekleştirmek için bu servisi kullanabilirsiniz.
 
-**Endpoint**: `/courier-company/test/package`  
-**Method**: `GET`  
+**Endpoint**: `/courier-company/test/package`<br>
+**Method**: `GET`
 
 ## Test Sipariş Oluşturma
+
 Sisteminizin sipariş alma (Create Package) kapasitesini test etmek için kullanılır. Gönderdiğiniz JSON içeriğindeki verilerle sanal bir sipariş oluşturulur ve bu sipariş sizin create-package servisinize gerçek bir istek olarak iletilir.
 
-**Endpoint**: `/courier-company/test/package`  
-**Method**: `POST`  
-**Request Body**:  
+**Endpoint**: `/courier-company/test/package`<br>
+**Method**: `POST`<br>
+**Request Body**:
+
 ```json
 {
     "amount": 150.00,
@@ -71,12 +76,13 @@ Sisteminizin sipariş alma (Create Package) kapasitesini test etmek için kullan
 **Not**: 30 saniyede bir test sipariş oluşturabilirsiniz.
 
 ## Test Sipariş Güncelleme
+
 Oluşturduğunuz bir test siparişinin, restoran tarafından iptal edilmesi senaryosunu simüle eder.
 
-
-**Endpoint**: `/courier-company/test/package/:package_id`  
-**Method**: `PATCH`  
+**Endpoint**: `/courier-company/test/package/:package_id`<br>
+**Method**: `PATCH`<br>
 **Request Body**:
+
 ```json
 {
     "package_id": "2651",

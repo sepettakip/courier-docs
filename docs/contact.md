@@ -6,7 +6,7 @@ Entegrasyon süreciyle ilgili yaşayabileceğiniz sorunlar veya aklınıza takı
 
 **Konular:** API entegrasyonu, endpoint sorunları, request/response formatları, hata kodları (5xx, 4xx), test süreci ve webhook bildirimleri gibi teknik konular.
 
-**Birincil İletişim:** `emre.geldegul@sepettakip.com`  (Yunus Emre Geldegül)  
+**Birincil İletişim:** `emre.geldegul@sepettakip.com` (Yunus Emre Geldegül)<br>
 **Genel IT Ekibi:** `it@sepettakip.com`
 
 ## Operasyonel ve Genel Konular

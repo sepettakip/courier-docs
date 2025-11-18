@@ -3,21 +3,24 @@
 Sepettakip, restoranların sipariş yönetimini ve kurye atama süreçlerini otomatikleştirmek amacıyla kurye firmaları için kapsamlı bir entegrasyon altyapısı sunar. Bu doküman, kurye firmalarının Sepettakip ekosistemine dahil olabilmesi için gerekli teknik standartları, API uç noktalarını (endpoints) ve veri akış senaryolarını detaylandırır.
 
 ## Genel Entegrasyon Yapısı
+
 Sepettakip ile Kurye Firması arasındaki entegrasyon RESTful API mimarisine dayanır ve veri alışverişi JSON formatında gerçekleşir. İletişim güvenliği için tüm isteklerin HTTPS protokolü üzerinden yapılması zorunludur.
 
-Entegrasyonun tam fonksiyonlu çalışabilmesi için hem Kurye Firmasının geliştirmesi gereken API uç noktaları (Endpoints) hem de Sepettakip'e geri bildirim yapılması gereken servisler bulunmaktadır. Veri akışı iki yönlüdür:
+Entegrasyonun tam fonksiyonlu çalışabilmesi için hem Kurye Firmasının geliştirmesi gereken API uç noktaları (Endpoints) hem de Sepettakip'e geri bildirim yapılması gereken servisler bulunmaktadır. Veri akışı iki yönlüdür
 
-### 1. Kurye Firması Tarafından Hazırlanacak Servisler (Inbound)
+### 1\. Kurye Firması Tarafından Hazırlanacak Servisler (Inbound)
+
 Sepettakip sunucularının, kurye operasyonlarını tetiklemek için istek (request) göndereceği servislerdir. Kurye firması bu servisleri REST API standartlarına uygun olarak dışarıya açmalıdır:
 
-- **Restoran Doğrulama(Check Credentials)**: Restoranın girdiği Erişim Belirteci (API Key/Token) bilgisinin kurye firması sisteminde geçerli olup olmadığını kontrol eden servistir.
+- **Restoran Kimlik Doğrulama (Check Credentials)**: Restoranın girdiği Erişim Belirteci (API Key/Token) bilgisinin kurye firması sisteminde geçerli olup olmadığını kontrol eden servistir.
 - **Sipariş Oluşturma (Create Order)**: Sepettakip'ten gelen sipariş bilgilerini alarak sisteminde kayıt açan ve operasyonu başlatan servistir.
 - **Sipariş İptali (Cancel Order)**: Restoranın veya sistemin iptal ettiği siparişleri kurye firması sisteminden düşürmek için kullanılan servistir.
 
-### 2. Sepettakip Tarafına Yapılacak Bildirimler (Outbound / Webhook)
+### 2\. Sepettakip Tarafına Yapılacak Bildirimler (Outbound / Webhook)
+
 Kurye firması sisteminde gerçekleşen durum değişikliklerinin Sepettakip'e bildirilmesidir. Kurye firması, bu olaylar gerçekleştiğinde Sepettakip API'sine istek gönderir:
 
-- Sipariş Durum Güncellemesi (Status Webhook): Paketin durumu değiştiğinde (Örn: Kurye atandı, Teslim alındı, Teslim edildi, İptal edildi) bu bilginin anlık olarak Sepettakip'e iletilmesini sağlayan servistir.
+- **Sipariş Durum Güncellemesi (Status Webhook)**: Paketin durumu değiştiğinde (Örn: Kurye atandı, Teslim alındı, Teslim edildi, İptal edildi) bu bilginin anlık olarak Sepettakip'e iletilmesini sağlayan servistir.
 
 ## Güvenlik ve Yetkilendirme (Headers)
 
@@ -35,7 +38,7 @@ Sepettakip tarafından kurye firmasına gönderilen bütün HTTP isteklerinde (S
 
 **Kurye Firması -> Sepettakip İstekleri (Webhook)**
 
-Kurye firması tarafından Sepettakip’e gönderilen bütün bildirimlerde (Durum güncelleme vb.) aşağıdaki header bilgileri yer almalıdır:
+Kurye firması tarafından Sepettakip'e gönderilen bütün bildirimlerde (Durum güncelleme vb.) aşağıdaki header bilgileri yer almalıdır:
 
 ```
 {   
@@ -51,19 +54,20 @@ Kurye firması tarafından Sepettakip’e gönderilen bütün bildirimlerde (Dur
 Entegrasyonun sağlıklı yürütülebilmesi için Kurye Firması, API isteklerinin karşılanacağı Base URL bilgisini Sepettakip ekibine iletmelidir. Test ve Canlı (Production) ortamları için ayrıştırılmış URL yapıları kullanılması önerilir.
 
 **Örnek Base URL Yapısı**:
+
 - **Test Ortamı**: `https://api-test.couriercompany.com/v1`
 - **Production Ortamı**: `https://api.couriercompany.com/v1/`
 
 Tüm API uç noktaları (endpoints) bu Base URL'in devamına eklenir.
 
-**Örnek**: Sipariş oluşturma endpoint'i `/create-package` ise ve test ortamındaysak tam istek adresi `https://api-test.couriercompany.com/v1/create-package olacaktır.
-
+**Örnek**: Sipariş oluşturma endpoint'i `/create-package` ise ve test ortamındaysak tam istek adresi `https://api-test.couriercompany.com/v1/create-package` olacaktır.
 
 ### Restoran Kimlik Doğrulama (Check Credentials)
+
 Restoranın Sepettakip paneline girdiği entegrasyon bilgilerinin (Kullanıcı adı/Şifre vb.) kurye firması tarafında doğrulanmasını sağlar. Bu adım başarılı olmadan sipariş akışı başlatılamaz.
 
-**Endpoint**: `/check-credentials`  
-**Method**: `POST`  
+**Endpoint**: `/check-credentials`<br>
+**Method**: `POST`<br>
 **Request Body**:
 
 ```json
@@ -77,19 +81,19 @@ Restoranın Sepettakip paneline girdiği entegrasyon bilgilerinin (Kullanıcı a
 
 Response olarak HTTP durum kodu 200 dönerse doğrulama başarılıdır. Aksi durumda entegrasyon etkinleşmez.
 
-| Durum Kodu | Durum İsmi | Açıklama                                             |
-|------------|------------|------------------------------------------------------|
-| 200        | OK         | Kimlik bilgileri doğru.                              |
-| 400        | Bad Request| Kimlik bilgileri hatalı veya istek gövdesi geçersiz. |
-
+Durum Kodu | Durum İsmi  | Açıklama
+---------- | ----------- | ----------------------------------------------------
+200        | OK          | Kimlik bilgileri doğru.
+400        | Bad Request | Kimlik bilgileri hatalı veya istek gövdesi geçersiz.
 
 **Not**: Yanıt gövdesi opsiyoneldir; yalnızca http durum kodu ile karar verilebilir.
 
 ### Paket Oluşturma (Create Package)
+
 Bir sipariş "Hazırlanıyor" statüsüne geçtiğinde veya restoran manuel olarak tetiklediğinde bu servis çağrılır.
 
-**Endpoint**: `/create-package`  
-**Method**: `POST`  
+**Endpoint**: `/create-package`<br>
+**Method**: `POST`<br>
 **Request Body**:
 
 ```json
@@ -121,7 +125,7 @@ Bir sipariş "Hazırlanıyor" statüsüne geçtiğinde veya restoran manuel olar
       "door_number": "5",
       "town": "Beşiktaş",
       "city": "İstanbul",
-      "description": "3. kat, sağdaki daire",
+      "description": "3\. kat, sağdaki daire",
       "latitude": 41.0438,
       "longitude": 29.0094
     },
@@ -151,33 +155,32 @@ Bir sipariş "Hazırlanıyor" statüsüne geçtiğinde veya restoran manuel olar
 
 Not: Kurye firması, operasyonel ihtiyaçları doğrultusunda istek gövdesine (payload) ek alanlar talep edebilir; ancak temel şema korunur ve zorunlu alanlar değiştirilmez.
 
-| Ana Nesne | Alan | Tip | Zorunluluk | Açıklama |
-| :--- | :--- | :--- | :--- | :--- |
-| `auth` | username | String | **Zorunlu** | Restoran doğrulama kullanıcısı. |
-| | password | String | **Zorunlu** | Restoran doğrulama şifresi. |
-| `order` | order_id | String | **Zorunlu** | Sepettakip sistemindeki benzersiz sipariş ID'si. |
-| | platform | String | **Zorunlu** | Siparişin kaynağı (Bkz: Platform Listesi). |
-| | amount | Float | **Zorunlu** | Siparişin toplam tutarı. |
-| | is_paid | Bool | **Zorunlu** | Ödeme durumu. `true`: Ödendi, `false`: Kapıda Tahsilat. |
-| | payment_type.key | String | **Zorunlu** | Ödeme yöntemi kodu (Bkz: Ödeme Tipleri). |
-| `address` | latitude/longitude | Float | Opsiyonel | Koordinat bilgisi. **Not:** Telefonla siparişlerde (CallerID) bu alan `null` gelebilir. |
-| | city/town | String | **Zorunlu** | İl ve İlçe bilgisi. |
+Ana Nesne | Alan               | Tip    | Zorunluluk  | Açıklama
+:-------- | :----------------- | :----- | :---------- | :--------------------------------------------------------------------------------------
+`auth`    | username           | String | **Zorunlu** | Restoran doğrulama kullanıcısı.
+          | password           | String | **Zorunlu** | Restoran doğrulama şifresi.
+`order`   | order_id           | String | **Zorunlu** | Sepettakip sistemindeki benzersiz sipariş ID'si.
+          | platform           | String | **Zorunlu** | Siparişin kaynağı (Bkz: Platform Listesi).
+          | amount             | Float  | **Zorunlu** | Siparişin toplam tutarı.
+          | is_paid            | Bool   | **Zorunlu** | Ödeme durumu. `true`: Ödendi, `false`: Kapıda Tahsilat.
+          | payment_type.key   | String | **Zorunlu** | Ödeme yöntemi kodu (Bkz: Ödeme Tipleri).
+`address` | latitude/longitude | Float  | Opsiyonel   | Koordinat bilgisi. **Not:** Telefonla siparişlerde (CallerID) bu alan `null` gelebilir.
+          | city/town          | String | **Zorunlu** | İl ve İlçe bilgisi.
 
-Adres bilgisindeki *latitude* ve *longitude* bilgisi, *CallerID* siparişlerinde ve kurye çağır ile oluşturulan siparişlerde iletilmez. Bu yüzden null değer alabilir. Ayrıca neighborhood, building_no, floor ve door_number alanları opsiyoneldir. Ödeme tipinin key bilgisi aşağıdaki değerleri alabilir.
+Adres bilgisindeki _latitude_ ve _longitude_ bilgisi, _CallerID_ siparişlerinde ve kurye çağır ile oluşturulan siparişlerde iletilmez. Bu yüzden null değer alabilir. Ayrıca neighborhood, building_no, floor ve door_number alanları opsiyoneldir. Ödeme tipinin key bilgisi aşağıdaki değerleri alabilir.
 
-Desteklenen Değerler Listesi:
+**Desteklenen Değerler Listesi**:
 
 - Platformlar: `Gofody`, `Yemeksepeti`, `Getir`, `Trendyol`, `Sepetapp`, `Migros`, `Fuudy`, `CallerID`, `WhatsApp`
 - Ödeme Tipleri (key): `paye`, `setcard`, `sodexo`, `sodexomobile`, `garantipay`, `moneypay`, `edenredonline`, `onlinecard`, `smarticket`, `sodexoonline`, `bkm`, `tokenflexonline`, `pos`, `sepetpara`, `card`, `cash`, `ticket`, `multinet`, `metropol`, `debt`, `winwin`, `tokenflex`, `cio`, `yemekmatik`
 
-Uyarı: Sipariş başarıyla oluşturulduktan sonra, tüm durum güncellemeleri kurye firması tarafından Sepettakip’e bildirilmelidir.
+Durum Kodu | Durum İsmi  | Açıklama
+---------- | ----------- | --------------------------------------------------
+200        | OK          | Sipariş başarıyla oluşturuldu.
+400        | Bad Request | İstek gövdesi geçersiz veya zorunlu alanlar eksik.
 
-| Durum Kodu | Durum İsmi | Açıklama                                             |
-|------------|------------|------------------------------------------------------|
-| 200        | OK         | Sipariş başarıyla oluşturuldu.                       |
-| 400        | Bad Request| İstek gövdesi geçersiz veya zorunlu alanlar eksik.   |
+**Response Body**:
 
-Örnek Response:
 ```json
 {
     "status": false,
@@ -186,24 +189,29 @@ Uyarı: Sipariş başarıyla oluşturulduktan sonra, tüm durum güncellemeleri 
 }
 ```
 
+Uyarı: Sipariş başarıyla oluşturulduktan sonra, tüm durum güncellemeleri kurye firması tarafından Sepettakip'e bildirilmelidir.
+
 Sipariş kurye sisteminde işlenemediğinde, kurye servisinden geçerli bir hata kodu (`error_code`) dönerse, restoran arayüzünde aktarılamama nedeni bu koda karşılık gelen açıklamayla gösterilir.
 
-Hata kodu iletilmez, tanınmaz veya biçim olarak geçersizse, sistem nedeni “kurye firması kaynaklı genel hata” olarak bildirir.
+Hata kodu iletilmez, tanınmaz veya biçim olarak geçersizse, sistem nedeni "kurye firması kaynaklı genel hata" olarak bildirir.
 
-| Hata Kodu (`error_code`) | Mesaj | Açıklama |
-| :--- | :--- | :--- |
-| `unauthorized_access` | Yetkisiz Erişim | API anahtarı veya şifre hatalı. |
-| `out_of_service_area` | Hizmet Alanı Dışı | Adres, kurye firmasının hizmet poligonları dışında. |
-| `location_resolution_failed` | Adres Hatası | Adres metni veya koordinatlar haritada doğrulanamadı. |
-| `restaurant_closed` | Restoran Kapalı | Kurye firması o an için hizmet vermiyor (Mesai dışı). |
-| `validation_error` | Validasyon Hatası | Eksik veya hatalı veri formatı (Örn: Telefon no eksik). |
-| `company_issue` | Firma Kaynaklı Problem | Kurye sistemi iç hatası (5xx). |
+Hata Kodu (`error_code`)     | Mesaj                  | Açıklama
+:--------------------------- | :--------------------- | :------------------------------------------------------
+`unauthorized_access`        | Yetkisiz Erişim        | API anahtarı veya şifre hatalı.
+`out_of_service_area`        | Hizmet Alanı Dışı      | Adres, kurye firmasının hizmet poligonları dışında.
+`location_resolution_failed` | Adres Hatası           | Adres metni veya koordinatlar haritada doğrulanamadı.
+`restaurant_closed`          | Restoran Kapalı        | Kurye firması o an için hizmet vermiyor (Mesai dışı).
+`validation_error`           | Validasyon Hatası      | Eksik veya hatalı veri formatı (Örn: Telefon no eksik).
+`company_issue`              | Firma Kaynaklı Problem | Kurye sistemi iç hatası (5xx).
+`courier_rejected`           | Kurye Reddetti         | Kurye firması siparişi kabul etmedi.
+`other`                      | Diğer Hata             | Yukarıdakiler dışında kalan genel hata.
 
 ### Paket İptali (Cancel Package)
+
 Kurye firmasina iletilen bir sipariş restoran kaynaklı nedenlere iptal edildiğinde bu servis çağrılır.
 
-**Endpoint**: `/cancel-package`  
-**Method**: `POST`  
+**Endpoint**: `/cancel-package`<br>
+**Method**: `POST`<br>
 **Request Body**:
 
 ```json
@@ -212,29 +220,30 @@ Kurye firmasina iletilen bir sipariş restoran kaynaklı nedenlere iptal edildi�
 }
 ```
 
-
-| Durum Kodu | Durum İsmi | Açıklama                                             |
-|------------|------------|------------------------------------------------------|
-| 200        | OK         | Sipariş başarıyla oluşturuldu.                       |
-| 400        | Bad Request| İstek gövdesi geçersiz veya zorunlu alanlar eksik.   |
-
+Durum Kodu | Durum İsmi  | Açıklama
+---------- | ----------- | --------------------------------------------------
+200        | OK          | Sipariş başarıyla oluşturuldu.
+400        | Bad Request | İstek gövdesi geçersiz veya zorunlu alanlar eksik.
 
 ### Sipariş Durum Güncellemesi (Status Webhook)
-Sepettakip bir siparişi kurye firmasına aktardıktan sonra, siparişin operasyonel takibi kurye firmasındadır. Kurye firması, sahadaki tüm durum değişikliklerini (kurye atandı, teslim edildi vb.) aşağıdaki webhook servisini çağırarak Sepettakip’e anlık olarak iletmekle yükümlüdür.
+
+Sepettakip bir siparişi kurye firmasına aktardıktan sonra, siparişin operasyonel takibi kurye firmasındadır. Kurye firması, sahadaki tüm durum değişikliklerini (kurye atandı, teslim edildi vb.) aşağıdaki webhook servisini çağırarak Sepettakip'e anlık olarak iletmekle yükümlüdür.
 
 **API Base URL**:
-- Test: `https://test-api.sepettakip.com`  
-- Prod: `https://api.sepettakip.com`  
-**Endpoint**: `/courier-company/package`  
-**Method**: `PATCH`
-**Headers**:
-```json
-{
+
+- Test: `https://test-api.sepettakip.com`
+- Prod: `https://api.sepettakip.com`<br>
+  **Endpoint**: `/courier-company/package`<br>
+  **Method**: `PATCH` **Headers**:
+
+  ```json
+  {
     "courier-company": "sepetfast",
     "Api-Key": "<SEPETTAKIP_API_KEY>"
-}
-```
-**Request Body**:
+  }
+  ```
+
+  **Request Body**:
 
 ```json
 {
@@ -244,32 +253,32 @@ Sepettakip bir siparişi kurye firmasına aktardıktan sonra, siparişin operasy
 }
 ```
 
-| Alan | Tip | Zorunluluk | Açıklama |
-| :--- | :--- | :--- | :--- |
-| `order_id` | String | **Zorunlu** | Durumu güncellenecek siparişin Sepettakip ID'si. |
-| `status` | String | **Zorunlu** | Siparişin yeni durumu (Bkz: Statü Kodları Tablosu). |
-| `courier_eta` | String | Opsiyonel | Kuryenin restorana tahmini varış zamanı. `YYYY-MM-DD HH:mm:ss` formatında gönderilmelidir. (Özellikle `on_way` durumunda gönderilmesi beklenir). |
+Alan          | Tip    | Zorunluluk  | Açıklama
+:------------ | :----- | :---------- | :-----------------------------------------------------------------------------------------------------------------------------------------------
+`order_id`    | String | **Zorunlu** | Durumu güncellenecek siparişin Sepettakip ID'si.
+`status`      | String | **Zorunlu** | Siparişin yeni durumu (Bkz: Statü Kodları Tablosu).
+`courier_eta` | String | Opsiyonel   | Kuryenin restorana tahmini varış zamanı. `YYYY-MM-DD HH:mm:ss` formatında gönderilmelidir. (Özellikle `on_way` durumunda gönderilmesi beklenir).
 
-| Statü Kodu | Durum Adı | Açıklama ve Aksiyon |
-| :--- | :--- | :--- |
-| `on_way` | Kurye Yola Çıktı | Kurye, paketi teslim almak üzere restorana doğru yola çıktığında gönderilir. `courier_eta` bilgisi eklenmelidir. |
-| `picked_up` | Kurye Paketi Aldı | Kurye, paketi restorandan teslim aldığında gönderilir. Sepettakip panelinde sipariş "Yolda" statüsüne geçer. |
-| `delivered` | Teslim Edildi | Kurye, paketi müşteriye teslim ettiğinde gönderilir. Sepettakip panelinde sipariş "Teslim Edildi" statüsüne geçer. |
-| `canceled` | İptal Edildi | Kurye firması tarafından operasyonel bir nedenle paket iptal edildiğinde gönderilir. Sepettakip panelinde sipariş "İptal" statüsüne düşer. |
-| `rejected` | Paket Reddedildi | Kurye firması paketi kabul etmediğinde (Bölge dışı vb.) gönderilir. Restorana bildirim yapılır ancak sipariş hemen iptal edilmez, restoran aksiyonu beklenir. |
+Statü Kodu  | Durum Adı         | Açıklama ve Aksiyon
+:---------- | :---------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------
+`on_way`    | Kurye Yola Çıktı  | Kurye, paketi teslim almak üzere restorana doğru yola çıktığında gönderilir. `courier_eta` bilgisi eklenmelidir.
+`picked_up` | Kurye Paketi Aldı | Kurye, paketi restorandan teslim aldığında gönderilir. Sepettakip panelinde sipariş "Yolda" statüsüne geçer.
+`delivered` | Teslim Edildi     | Kurye, paketi müşteriye teslim ettiğinde gönderilir. Sepettakip panelinde sipariş "Teslim Edildi" statüsüne geçer.
+`canceled`  | İptal Edildi      | Kurye firması tarafından operasyonel bir nedenle paket iptal edildiğinde gönderilir. Sepettakip panelinde sipariş "İptal" statüsüne düşer.
+`rejected`  | Paket Reddedildi  | Kurye firması paketi kabul etmediğinde (Bölge dışı vb.) gönderilir. Restorana bildirim yapılır ancak sipariş hemen iptal edilmez, restoran aksiyonu beklenir.
 
 İsteğe dönen cevaplar, HTTP statüs kodları ile belirtilir:
 
-| Kod | Açıklama | Notlar |
-| :--- | :--- | :--- |
-| **204** | Güncelleme başarılı. | Gövde boş olabilir. |
-| **400** | Geçersiz istek / sipariş zaten hedef statüde. | Alan eksik/format hatası. |
-| **401** | API anahtarı geçersiz veya bulunamadı. | `Api-Key` kontrol edin. |
-| **403** | Sipariş aktarılmamış ya da farklı bir kurye firmasına ait. | Yetki/yönlendirme hatası. |
-| **404** | Sipariş bulunamadı. | `id` doğrulayın. |
-| **422** | Mevcut statü, hedef statü için uygun değil (iş kuralı ihlali). | Örn. `courier_eta` zorunlu. |
-| **502** | Sistem güncelleniyor; daha sonra deneyin. | Geçici durum. Yalnızca test ortamı. |
-| **500** | Beklenmeyen sunucu hatası. | Destek ile iletişime geçin. |
+Kod     | Açıklama                                                       | Notlar
+:------ | :------------------------------------------------------------- | :----------------------------------
+**204** | Güncelleme başarılı.                                           | Gövde boş olabilir.
+**400** | Geçersiz istek / sipariş zaten hedef statüde.                  | Alan eksik/format hatası.
+**401** | API anahtarı geçersiz veya bulunamadı.                         | `Api-Key` kontrol edin.
+**403** | Sipariş aktarılmamış ya da farklı bir kurye firmasına ait.     | Yetki/yönlendirme hatası.
+**404** | Sipariş bulunamadı.                                            | `id` doğrulayın.
+**422** | Mevcut statü, hedef statü için uygun değil (iş kuralı ihlali). | Örn. `courier_eta` zorunlu.
+**502** | Sistem güncelleniyor; daha sonra deneyin.                      | Geçici durum. Yalnızca test ortamı.
+**500** | Beklenmeyen sunucu hatası.                                     | Destek ile iletişime geçin.
 
 Örnek HTTP Request:
 

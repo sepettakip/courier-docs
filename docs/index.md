@@ -1,14 +1,13 @@
 # Kurye Entegrasyonu
 
-Bu doküman, Sepettakip ile kurye firmaları arasında gerçekleştirilecek entegrasyonun teknik altyapısını açıklamaktadır.
-Entegrasyon, siparişlerin otomatik olarak kurye firmalarına iletilmesini ve kurye güncellemelerinin Sepettakip sistemine aktarılmasını sağlar.
-
+Bu doküman, Sepettakip ile kurye firmaları arasında gerçekleştirilecek entegrasyonun teknik altyapısını açıklamaktadır. Entegrasyonun temel hedefi, siparişlerin otomatik olarak kurye firmalarına iletilmesini ve kurye durum güncellemelerinin anlık olarak Sepettakip sistemine aktarılmasını sağlamaktır.
 
 ## Terimler Sözlüğü
+
 Dokümanda yer alan bazı terimler aşağıda açıklanmıştır.
 
-- **Entegrasyon**: Sepettakip platformu ile Kurye Firması sistemleri arasında veri alışverişini sağlayan ana teknik bağlantıyı ve bu bağlantının yasal/teknik çerçevesini ifade eder.
-- **Anlaşma (Restoran Eşleştirmesi)**: Kurye firması ile tekil bir restoran arasındaki ticari ilişkiyi ve bu ilişkinin Sepettakip paneli üzerindeki dijital tanımlamasını ifade eder.
+- **Entegrasyon**: Sepettakip ile Kurye Firması arasındaki veri alışverişini sağlayan teknik bağlantıyı ve bu bağlantının yasal/teknik çerçevesini ifade eder.
+- **Anlaşma**: Kurye firması ile tekil bir restoran arasındaki ticari ilişkiyi ve bu ilişkinin Sepettakip paneli üzerindeki dijital tanımlamasını ifade eder.
 - **Erişim Belirteci**: Restoranın kurye firması hizmetlerini kullanabilmesi için gereken; API Anahtarı (API Key), Gizli Anahtar (Secret Key) veya Müşteri ID'si gibi dijital kimlik doğrulama bilgilerinin tamamıdır.
 - **Paket**: İçerisinde bir siparişi barındıran, kurye firmasına teslimat için iletilen tekil lojistik birimi ifade eder.
 - **Sipariş Akışı**: Bir siparişin Sepettakip'e düşmesinden, kurye firmasına iletilip teslim edilmesine kadar geçen sürecin tamamını ve statü değişimlerini ifade eder.
