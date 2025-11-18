@@ -280,7 +280,7 @@ Kod     | Açıklama                                                       | Not
 **502** | Sistem güncelleniyor; daha sonra deneyin.                      | Geçici durum. Yalnızca test ortamı.
 **500** | Beklenmeyen sunucu hatası.                                     | Destek ile iletişime geçin.
 
-Örnek HTTP Request:
+Sipariş durum güncelleme isteği için bir `curl` örneği aşağıda verilmiştir.
 
 ```bash
 curl -sS --fail \

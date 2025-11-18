@@ -14,6 +14,8 @@ Not: Test servislerinin tamamı test ortamında çalışır. Production ortamın
 
 API-Key ve name bilgileri size e-posta ile iletilecektir.
 
+Not: Servisler bazen HTTP 502 (Bad Gateway) hatası dönebilir. Bu durumda 30 saniye bekleyip isteği tekrar göndermeniz önerilir.
+
 ## Erişim Belirteci Doğrulama
 
 Geliştirdiğiniz Check Credentials (Kimlik Doğrulama) servisinin doğru çalışıp çalışmadığını test etmek için kullanılır. Bu endpointi çağırdığınızda, Sepettakip sizin sisteminize bir doğrulama isteği gönderir.
