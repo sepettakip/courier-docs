@@ -132,15 +132,15 @@
 </ul>
 <h2 id="guvenlik-ve-yetkilendirme-headers">Güvenlik ve Yetkilendirme (Headers)</h2>
 <p>Veri bütünlüğünü ve güvenliğini sağlamak için HTTP isteklerinde aşağıdaki başlık (header) bilgileri zorunludur.</p>
-<p><strong>Sepettakip -&gt; Kurye Firması İstekleri</strong></p>
+<p>Yön: <strong>Sepettakip -&gt; Kurye Firması İstekleri</strong></p>
 <p>Sepettakip tarafından kurye firmasına gönderilen bütün HTTP isteklerinde (Sipariş oluşturma, iptal vb.) aşağıdaki header bilgileri yer alır:</p>
-<pre><code>{   
+<pre><code class="language-json">{   
   &quot;Api-Key&quot;: &quot;&lt;SEPETTAKIP_API_KEY&gt;&quot;
 }
 </code></pre>
-<p><strong>Kurye Firması -&gt; Sepettakip İstekleri (Webhook)</strong></p>
+<p>Yön: <strong>Kurye Firması -&gt; Sepettakip İstekleri (Webhook)</strong></p>
 <p>Kurye firması tarafından Sepettakip&rsquo;e gönderilen bütün bildirimlerde (Durum güncelleme vb.) aşağıdaki header bilgileri yer almalıdır:</p>
-<pre><code>{   
+<pre><code class="language-json">{   
   &quot;Courier-Company&quot;: &quot;&lt;COURIER_COMPANY_KEY&gt;&quot;,
   &quot;Api-Key&quot;: &quot;&lt;SEPETTAKIP_API_KEY&gt;&quot;
 }
@@ -157,8 +157,8 @@
 <p><strong>Örnek</strong>: Sipariş oluşturma endpoint&rsquo;i <code>/create-package</code> ise ve test ortamındaysak tam istek adresi <code>https://api-test.couriercompany.com/v1/create-package</code> olacaktır.</p>
 <h3 id="restoran-kimlik-dogrulama-check-credentials">Restoran Kimlik Doğrulama (Check Credentials)</h3>
 <p>Restoranın Sepettakip paneline girdiği entegrasyon bilgilerinin (Kullanıcı adı/Şifre vb.) kurye firması tarafında doğrulanmasını sağlar. Bu adım başarılı olmadan sipariş akışı başlatılamaz.</p>
-<p><strong>Endpoint</strong>: <code>/check-credentials</code><br>
-<strong>Method</strong>: <code>POST</code><br>
+<p><strong>Endpoint</strong>: <code>/check-credentials</code><br />
+<strong>Method</strong>: <code>POST</code><br />
 <strong>Request Body</strong>:</p>
 <pre><code class="language-json">{
     &quot;username&quot;: &quot;&quot;,
@@ -191,8 +191,8 @@
 <p><strong>Not</strong>: Yanıt gövdesi opsiyoneldir; yalnızca http durum kodu ile karar verilebilir.</p>
 <h3 id="paket-olusturma-create-package">Paket Oluşturma (Create Package)</h3>
 <p>Bir sipariş &ldquo;Hazırlanıyor&rdquo; statüsüne geçtiğinde veya restoran manuel olarak tetiklediğinde bu servis çağrılır.</p>
-<p><strong>Endpoint</strong>: <code>/create-package</code><br>
-<strong>Method</strong>: <code>POST</code><br>
+<p><strong>Endpoint</strong>: <code>/create-package</code><br />
+<strong>Method</strong>: <code>POST</code><br />
 <strong>Request Body</strong>:</p>
 <pre><code class="language-json">{
   &quot;auth&quot;: {
@@ -253,32 +253,79 @@
 <table>
 <thead>
 <tr>
-<th style="text-align: left;">Ana Nesne</th>
-<th style="text-align: left;">Alan</th>
-<th style="text-align: left;">Tip</th>
-<th style="text-align: left;">Zorunluluk</th>
-<th style="text-align: left;">Açıklama</th>
+<th>Ana Nesne</th>
+<th>Alan</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><code>auth</code></td>
-<td style="text-align: left;">username</td>
-<td style="text-align: left;">String</td>
-<td style="text-align: left;"><strong>Zorunlu</strong></td>
-<td style="text-align: left;">Restoran doğrulama kullanıcısı.</td>
+<td><code>auth</code></td>
+<td>username</td>
+<td>String</td>
+<td><strong>Zorunlu</strong></td>
+<td>Restoran doğrulama kullanıcısı adı.</td>
+</tr>
+<tr>
+<td><code>auth</code></td>
+<td>password</td>
+<td>String</td>
+<td><strong>Zorunlu</strong></td>
+<td>Restoran doğrulama şifresi.</td>
+</tr>
+<tr>
+<td><code>order</code></td>
+<td>order_id</td>
+<td>String</td>
+<td><strong>Zorunlu</strong></td>
+<td>Sepettakip sistemindeki benzersiz sipariş ID&rsquo;si.</td>
+</tr>
+<tr>
+<td><code>order</code></td>
+<td>platform</td>
+<td>String</td>
+<td><strong>Zorunlu</strong></td>
+<td>Siparişin kaynağı (Bkz: Platform Listesi).</td>
+</tr>
+<tr>
+<td><code>order</code></td>
+<td>amount</td>
+<td>Float</td>
+<td><strong>Zorunlu</strong></td>
+<td>Siparişin toplam tutarı.</td>
+</tr>
+<tr>
+<td><code>order</code></td>
+<td>is_paid</td>
+<td>Bool</td>
+<td><strong>Zorunlu</strong></td>
+<td>Ödeme durumu. <code>true</code>: Ödendi, <code>false</code>: Kapıda Tahsilat.</td>
+</tr>
+<tr>
+<td><code>order</code></td>
+<td>payment_type.key</td>
+<td>String</td>
+<td><strong>Zorunlu</strong></td>
+<td>Ödeme yöntemi kodu (Bkz: Ödeme Tipleri).</td>
+</tr>
+<tr>
+<td><code>address</code></td>
+<td>latitude/longitude</td>
+<td>Float</td>
+<td>Opsiyonel</td>
+<td>Koordinat bilgisi. <strong>Not:</strong> Telefonla siparişlerde (CallerID) bu alan <code>null</code> gelebilir.</td>
+</tr>
+<tr>
+<td><code>address</code></td>
+<td>city/town</td>
+<td>String</td>
+<td><strong>Zorunlu</strong></td>
+<td>İl ve İlçe bilgisi.</td>
 </tr>
 </tbody>
 </table>
-<pre><code>      | password           | String | **Zorunlu** | Restoran doğrulama şifresi.
-</code></pre>
-<p><code>order</code>   | order_id           | String | <strong>Zorunlu</strong> | Sepettakip sistemindeki benzersiz sipariş ID&rsquo;si.
-          | platform           | String | <strong>Zorunlu</strong> | Siparişin kaynağı (Bkz: Platform Listesi).
-          | amount             | Float  | <strong>Zorunlu</strong> | Siparişin toplam tutarı.
-          | is_paid            | Bool   | <strong>Zorunlu</strong> | Ödeme durumu. <code>true</code>: Ödendi, <code>false</code>: Kapıda Tahsilat.
-          | payment_type.key   | String | <strong>Zorunlu</strong> | Ödeme yöntemi kodu (Bkz: Ödeme Tipleri).
-<code>address</code> | latitude/longitude | Float  | Opsiyonel   | Koordinat bilgisi. <strong>Not:</strong> Telefonla siparişlerde (CallerID) bu alan <code>null</code> gelebilir.
-          | city/town          | String | <strong>Zorunlu</strong> | İl ve İlçe bilgisi.</p>
 <p>Adres bilgisindeki <em>latitude</em> ve <em>longitude</em> bilgisi, <em>CallerID</em> siparişlerinde ve kurye çağır ile oluşturulan siparişlerde iletilmez. Bu yüzden null değer alabilir. Ayrıca neighborhood, building_no, floor ve door_number alanları opsiyoneldir. Ödeme tipinin key bilgisi aşağıdaki değerleri alabilir.</p>
 <p><strong>Desteklenen Değerler Listesi</strong>:</p>
 <ul>
@@ -369,8 +416,8 @@
 </table>
 <h3 id="paket-iptali-cancel-package">Paket İptali (Cancel Package)</h3>
 <p>Kurye firmasina iletilen bir sipariş restoran kaynaklı nedenlere iptal edildiğinde bu servis çağrılır.</p>
-<p><strong>Endpoint</strong>: <code>/cancel-package</code><br>
-<strong>Method</strong>: <code>POST</code><br>
+<p><strong>Endpoint</strong>: <code>/cancel-package</code><br />
+<strong>Method</strong>: <code>POST</code><br />
 <strong>Request Body</strong>:</p>
 <pre><code class="language-json">{
     &quot;order_id&quot;: &quot;545&quot;
@@ -402,15 +449,16 @@
 <p><strong>API Base URL</strong>:</p>
 <ul>
 <li>Test: <code>https://test-api.sepettakip.com</code></li>
-<li>Prod: <code>https://api.sepettakip.com</code><br>
-  <strong>Endpoint</strong>: <code>/courier-company/package</code><br>
-  <strong>Method</strong>: <code>PATCH</code> <strong>Headers</strong>:</li>
+<li>Prod: <code>https://api.sepettakip.com</code>  </li>
 </ul>
-<p><code>json
-  {
-    "courier-company": "sepetfast",
-    "Api-Key": "&lt;SEPETTAKIP_API_KEY&gt;"
-  }</code></p>
+<p><strong>Endpoint</strong>: <code>/courier-company/package</code><br />
+<strong>Method</strong>: <code>PATCH</code><br />
+<strong>Headers</strong>:</p>
+<pre><code class="language-json">  {
+    &quot;courier-company&quot;: &quot;sepetfast&quot;,
+    &quot;Api-Key&quot;: &quot;&lt;SEPETTAKIP_API_KEY&gt;&quot;
+  }
+</code></pre>
 <p><strong>Request Body</strong>:</p>
 <pre><code class="language-json">{
     &quot;order_id&quot;: &quot;12345&quot;,

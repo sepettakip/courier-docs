@@ -110,8 +110,8 @@
 <h2 id="erisim-belirteci-dogrulama">Erişim Belirteci Doğrulama</h2>
 <p>Geliştirdiğiniz Check Credentials (Kimlik Doğrulama) servisinin doğru çalışıp çalışmadığını test etmek için kullanılır. Bu endpointi çağırdığınızda, Sepettakip sizin sisteminize bir doğrulama isteği gönderir.</p>
 <p><strong>Ayrıca, bu doğrulama işlemini yapmadan siparişler tarafınıza aktarılmaz.</strong></p>
-<p><strong>Endpoint</strong>: <code>/courier-company/test/check-credentials</code><br>
-<strong>Method</strong>: <code>POST</code><br>
+<p><strong>Endpoint</strong>: <code>/courier-company/test/check-credentials</code><br />
+<strong>Method</strong>: <code>POST</code><br />
 <strong>Request Body</strong>:</p>
 <pre><code class="language-json">{
   &quot;credentials&quot;: {
@@ -122,16 +122,16 @@
 </code></pre>
 <h2 id="erisim-belirtecini-silme">Erişim Belirtecini Silme</h2>
 <p>Test restoranına eklenen erişim bilgileri silinmek istendiğinde bu servis kullanılır.</p>
-<p><strong>Endpoint</strong>: <code>/courier-company/test/check-credentials</code><br>
+<p><strong>Endpoint</strong>: <code>/courier-company/test/check-credentials</code><br />
 <strong>Method</strong>: <code>DELETE</code></p>
 <h2 id="test-siparislerini-listeleme">Test Siparişlerini Listeleme</h2>
 <p>Restoranlar, test siparişlerini Sepettakip arayüzünden görüntülemek istediklerinde, Sepettakip bu servisi kullanarak test siparişlerini listeler. Sizlerde bu işlemi gerçekleştirmek için bu servisi kullanabilirsiniz.</p>
-<p><strong>Endpoint</strong>: <code>/courier-company/test/package</code><br>
+<p><strong>Endpoint</strong>: <code>/courier-company/test/package</code><br />
 <strong>Method</strong>: <code>GET</code></p>
 <h2 id="test-siparis-olusturma">Test Sipariş Oluşturma</h2>
 <p>Sisteminizin sipariş alma (Create Package) kapasitesini test etmek için kullanılır. Gönderdiğiniz JSON içeriğindeki verilerle sanal bir sipariş oluşturulur ve bu sipariş sizin create-package servisinize gerçek bir istek olarak iletilir.</p>
-<p><strong>Endpoint</strong>: <code>/courier-company/test/package</code><br>
-<strong>Method</strong>: <code>POST</code><br>
+<p><strong>Endpoint</strong>: <code>/courier-company/test/package</code><br />
+<strong>Method</strong>: <code>POST</code><br />
 <strong>Request Body</strong>:</p>
 <pre><code class="language-json">{
     &quot;amount&quot;: 150.00,
@@ -152,8 +152,8 @@
 <p><strong>Not</strong>: 30 saniyede bir test sipariş oluşturabilirsiniz.</p>
 <h2 id="test-siparis-guncelleme">Test Sipariş Güncelleme</h2>
 <p>Oluşturduğunuz bir test siparişinin, restoran tarafından iptal edilmesi senaryosunu simüle eder.</p>
-<p><strong>Endpoint</strong>: <code>/courier-company/test/package/:package_id</code><br>
-<strong>Method</strong>: <code>PATCH</code><br>
+<p><strong>Endpoint</strong>: <code>/courier-company/test/package/:package_id</code><br />
+<strong>Method</strong>: <code>PATCH</code><br />
 <strong>Request Body</strong>:</p>
 <pre><code class="language-json">{
     &quot;package_id&quot;: &quot;2651&quot;,
