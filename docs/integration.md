@@ -235,19 +235,19 @@ Sepettakip bir siparişi kurye firmasına aktardıktan sonra, siparişin **opera
 }
 ```
 
-| Alan          | Tip      | Zorunlu | Varsayılan | Kabul Edilen Değerler                                         | Açıklama                     |
-| ------------- | -------- | ------- | ---------- | ------------------------------------------------------------- | ---------------------------- |
-| `order_id`    | string   | Evet    | -          | -                                                             | Siparişin benzersiz kimliği. |
-| `status`      | enum     | Evet    | -          | `on_way` · `picked_up` · `delivered` · `canceled`, `rejected` | Sipariş durum bilgisi.       |
-| `courier_eta` | datetime | Hayır   | -          | ISO-8601 UTC (örn. `2025-08-18T07:30:00Z`)                    | Kurye tahmini varış zamanı . |
+| Alan          | Tip      | Zorunlu | Varsayılan | Kabul Edilen Değerler                                           | Açıklama                     |
+| ------------- | -------- | ------- | ---------- | --------------------------------------------------------------- | ---------------------------- |
+| `order_id`    | string   | Evet    | -          | -                                                               | Siparişin benzersiz kimliği. |
+| `status`      | enum     | Evet    | -          | `assigned` · `picked_up` · `delivered` · `canceled`, `rejected` | Sipariş durum bilgisi.       |
+| `courier_eta` | datetime | Hayır   | -          | ISO-8601 UTC (örn. `2025-08-18T07:30:00Z`)                      | Kurye tahmini varış zamanı . |
 
-| Durum     | Açıklama                 | Not                                                                                            |
-| --------- | ------------------------ | ---------------------------------------------------------------------------------------------- |
-| on_way    | Kurye Yola Çıktı         | Kurye, paketi **restorandan** almak için yola çıktı. `courier_eta` gönderilmeli.               |
-| picked_up | Kurye Paketi Aldı        | Kurye, paketi restorandan teslim aldı. Sepettakip’te sipariş “yolda” görünür.                  |
-| delivered | Kurye Paketi Teslim Etti | Kurye, paketi alıcıya teslim etti. (Sipariş, Sepettakip'te "teslim edildi" olarak güncellenir.)|
-| canceled  | Kurye Paketi İptal Etti  | Kurye, paketi iptal etti. (Sipariş, Sepettakip'te "iptal edildi" olarak güncellenir)           |
-| rejected  | Kurye Paketi Reddetti    | Kurye, paketi reddetti. (Restorana sadece bildirim yapılır, iptal edilmez.)                    |
+| Durum     | Açıklama                 | Not                                                                                                 |
+| --------- | ------------------------ | --------------------------------------------------------------------------------------------------- |
+| assigned  | Kuryeye Atandı / Kurye Yola Çıktı         | Kurye, paketi **restorandan** almak için yola çıktı. `courier_eta` gönderilmeli.   |
+| picked_up | Kurye Paketi Aldı        | Kurye, paketi restorandan teslim aldı. Sepettakip’te sipariş “yolda” görünür.                       |
+| delivered | Kurye Paketi Teslim Etti | Kurye, paketi alıcıya teslim etti. (Sipariş, Sepettakip'te "teslim edildi" olarak güncellenir.)     |
+| canceled  | Kurye Paketi İptal Etti  | Kurye, paketi iptal etti. (Sipariş, Sepettakip'te "iptal edildi" olarak güncellenir)                |
+| rejected  | Kurye Paketi Reddetti    | Kurye, paketi reddetti. (Restorana sadece bildirim yapılır, iptal edilmez.)                         |
 
 #### **Webhook Response**
 
