@@ -22,8 +22,8 @@ Geliştirdiğiniz Check Credentials (Kimlik Doğrulama) servisinin doğru çalı
 
 **Ayrıca, bu doğrulama işlemini yapmadan siparişler tarafınıza aktarılmaz.**
 
-**Endpoint**: `/courier-company/test/check-credentials`<br>
-**Method**: `POST`<br>
+**Endpoint**: `/courier-company/test/check-credentials`  
+**Method**: `POST`  
 **Request Body**:
 
 ```json
@@ -39,22 +39,22 @@ Geliştirdiğiniz Check Credentials (Kimlik Doğrulama) servisinin doğru çalı
 
 Test restoranına eklenen erişim bilgileri silinmek istendiğinde bu servis kullanılır.
 
-**Endpoint**: `/courier-company/test/check-credentials`<br>
+**Endpoint**: `/courier-company/test/check-credentials`  
 **Method**: `DELETE`
 
 ## Test Siparişlerini Listeleme
 
 Restoranlar, test siparişlerini Sepettakip arayüzünden görüntülemek istediklerinde, Sepettakip bu servisi kullanarak test siparişlerini listeler. Sizlerde bu işlemi gerçekleştirmek için bu servisi kullanabilirsiniz.
 
-**Endpoint**: `/courier-company/test/package`<br>
+**Endpoint**: `/courier-company/test/package`  
 **Method**: `GET`
 
 ## Test Sipariş Oluşturma
 
 Sisteminizin sipariş alma (Create Package) kapasitesini test etmek için kullanılır. Gönderdiğiniz JSON içeriğindeki verilerle sanal bir sipariş oluşturulur ve bu sipariş sizin create-package servisinize gerçek bir istek olarak iletilir.
 
-**Endpoint**: `/courier-company/test/package`<br>
-**Method**: `POST`<br>
+**Endpoint**: `/courier-company/test/package`  
+**Method**: `POST`  
 **Request Body**:
 
 ```json
@@ -81,8 +81,8 @@ Sisteminizin sipariş alma (Create Package) kapasitesini test etmek için kullan
 
 Oluşturduğunuz bir test siparişinin, restoran tarafından iptal edilmesi senaryosunu simüle eder.
 
-**Endpoint**: `/courier-company/test/package/:package_id`<br>
-**Method**: `PATCH`<br>
+**Endpoint**: `/courier-company/test/package/:package_id`  
+**Method**: `PATCH`  
 **Request Body**:
 
 ```json
