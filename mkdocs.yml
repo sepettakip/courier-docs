@@ -3,6 +3,7 @@ use_directory_urls: true
 nav:
   - 'Giriş': 'index.md'
   - 'Entegrasyon': 'integration.md'
+  - 'Entegrasyon Testi': 'integration_test.md'
   - 'İletişim ve Destek': 'contact.md'
 theme:
     name: readthedocs
