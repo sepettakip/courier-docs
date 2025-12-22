@@ -136,17 +136,17 @@ Bir sipariş "Hazırlanıyor" statüsüne geçtiğinde veya restoran manuel olar
     "products": [
       {
         "quantity": 2,
-        "unit_price": 50,
-        "product_name": "Lahmacun",
-        "product_note": "Acısız olsun",
-        "total_amount": 100
+        "price": 50,
+        "name": "Lahmacun",
+        "name": "Acısız olsun",
+        "total_price": 100
       },
       {
         "quantity": 1,
-        "unit_price": 150.5,
-        "product_name": "Kuzu Şiş",
-        "product_note": "",
-        "total_amount": 150.5
+        "price": 150.5,
+        "name": "Kuzu Şiş",
+        "note": "",
+        "total_price": 150.5
       }
     ]
   }
