@@ -4,6 +4,7 @@ nav:
   - 'Giriş': 'index.md'
   - 'Entegrasyon': 'integration.md'
   - 'Entegrasyon Testi': 'integration_test.md'
+  - 'Entegrasyon Checklist': 'integration_checklist.md'
   - 'İletişim ve Destek': 'contact.md'
 theme:
     name: readthedocs
