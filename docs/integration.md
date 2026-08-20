@@ -114,7 +114,7 @@ Bir sipariş "Hazırlanıyor" statüsüne geçtiğinde veya restoran manuel olar
     "amount": 250.5,
     "is_paid": true,
     "payment_type": {
-      "key": "credit-card",
+      "key": "card",
       "method": "Online Kredi Kartı"
     },
     "address": {
@@ -138,7 +138,7 @@ Bir sipariş "Hazırlanıyor" statüsüne geçtiğinde veya restoran manuel olar
         "quantity": 2,
         "price": 50,
         "name": "Lahmacun",
-        "name": "Acısız olsun",
+        "note": "Acısız olsun",
         "total_price": 100
       },
       {
@@ -250,7 +250,7 @@ Sepettakip bir siparişi kurye firmasına aktardıktan sonra, siparişin operasy
 ```json
 {
     "order_id": "12345",
-    "status": "on_way",
+    "status": "picked_up",
     "courier_eta": "2023-10-25 14:30:00"
 }
 ```
