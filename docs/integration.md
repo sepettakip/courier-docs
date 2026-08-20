@@ -171,7 +171,7 @@ Adres bilgisindeki _latitude_ ve _longitude_ bilgisi, _CallerID_ siparişlerinde
 
 **Desteklenen Değerler Listesi**:
 
-- Platformlar: `Gofody`, `Yemeksepeti`, `Getir`, `Trendyol`, `Sepetapp`, `Migros`, `Fuudy`, `CallerID`, `WhatsApp`
+- Platformlar: `Gofody`, `Yemeksepeti`, `Getir`, `Trendyol`, `Sepetapp`, `Migros`, `Fuudy`, `CallerID`, `WhatsApp`, `Tıkla Gelsin`
 - Ödeme Tipleri (key): `paye`, `setcard`, `sodexo`, `sodexomobile`, `garantipay`, `moneypay`, `edenredonline`, `onlinecard`, `smarticket`, `sodexoonline`, `bkm`, `tokenflexonline`, `pos`, `sepetpara`, `card`, `cash`, `ticket`, `multinet`, `metropol`, `debt`, `winwin`, `tokenflex`, `cio`, `yemekmatik`
 
 Durum Kodu | Durum İsmi  | Açıklama
