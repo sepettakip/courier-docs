@@ -98,7 +98,7 @@ Oluşturduğunuz bir test siparişinin, restoran tarafından iptal edilmesi sena
 
 Test ortamında oluşturulan siparişler ve yapılan işlemlerle ilgili log kayıtlarını görüntülemek için bu servisi kullanabilirsiniz. Bu servis, son 3 saat içinde gerçekleşen işlemleri döndürür ve isteğe bağlı olarak `package_id`, `direction` ve `action` parametreleriyle filtreleme yapılabilir.
 
-**Endpoint**: `/courier-company/test/logs`  
+**Endpoint**: `/courier-company/test/log`  
 **Method**: `GET`  
 **Query Params**:
 

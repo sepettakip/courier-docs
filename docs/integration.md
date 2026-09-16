@@ -174,10 +174,15 @@ Adres bilgisindeki _latitude_ ve _longitude_ bilgisi, _CallerID_ siparişlerinde
 - Platformlar: `Gofody`, `Yemeksepeti`, `Getir`, `Trendyol`, `Sepetapp`, `Migros`, `Fuudy`, `CallerID`, `WhatsApp`, `Tıkla Gelsin`
 - Ödeme Tipleri (key): `paye`, `setcard`, `sodexo`, `sodexomobile`, `garantipay`, `moneypay`, `edenredonline`, `onlinecard`, `smarticket`, `sodexoonline`, `bkm`, `tokenflexonline`, `pos`, `sepetpara`, `card`, `cash`, `ticket`, `multinet`, `metropol`, `debt`, `winwin`, `tokenflex`, `cio`, `yemekmatik`
 
+> **Not:** Bazı ödeme tipleri test ortamında desteklenmeyebilir veya çalışmayabilir. Örneğin `onlinecard` test ortamında kullanılamayabilir.
+
 Durum Kodu | Durum İsmi  | Açıklama
 ---------- | ----------- | --------------------------------------------------
 200        | OK          | Sipariş başarıyla oluşturuldu.
 400        | Bad Request | İstek gövdesi geçersiz veya zorunlu alanlar eksik.
+
+
+
 
 **Response Body**:
 
